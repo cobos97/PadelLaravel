@@ -20,5 +20,9 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/principal', 'PrincipalController@index')->name('principal')->middleware('verified');
-Route::get('/admin', 'AdminController@index')->name('admin')->middleware('es_admin');
 
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('es_admin');
+Route::post('/admin', 'AdminController@insertar')->name('insertar')->middleware('es_admin');
+
+Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_admin');
+Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
