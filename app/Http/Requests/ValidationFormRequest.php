@@ -25,8 +25,7 @@ class ValidationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'lugar' => 'required|min:5',
-            'foto' => 'required'
+            'lugar' => 'required|min:5'
         ];
     }
 
@@ -37,8 +36,7 @@ class ValidationFormRequest extends FormRequest
     {
         return [
             'lugar.required'=>'Por favor, introduce un lugar para la pista',
-            'lugar.max'=>'EL campo lugar debe de ser de al menos 5 caracteres',
-            'foto.required'=>'La foto es obligatoria para la pista'
+            'lugar.max'=>'EL campo lugar debe de ser de al menos 5 caracteres'
         ];
     }
 

@@ -16,8 +16,8 @@
             --}}
         </div>
         <div class="form-group mx-sm-3 mb-2">
-            <label for="fotoEditar" class="sr-only">Foto</label>
-            <input type="file" class="form-control" id="fotoEditar" name="fotoEditar">
+            <label for="foto" class="sr-only">Foto</label>
+            <input type="file" class="form-control" id="foto" name="foto">
         </div>
         <button type="submit" name="editar" value="pista" class="btn btn-success mb-2">Editar</button>
     </form>

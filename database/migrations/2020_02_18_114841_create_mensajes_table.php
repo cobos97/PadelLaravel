@@ -18,7 +18,6 @@ class CreateMensajesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pista_id');
             $table->string('contenido');
-            $table->string('fecha');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

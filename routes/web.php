@@ -26,3 +26,4 @@ Route::post('/admin', 'AdminController@insertar')->name('insertar')->middleware(
 
 Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_admin');
 Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
+Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');

@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+<?php
+stream_context_set_default([
+    'ssl' => [
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+    ]
+]);
+?>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

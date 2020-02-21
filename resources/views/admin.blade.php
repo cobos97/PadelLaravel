@@ -24,15 +24,15 @@
                 @csrf
 
                 <div class="form-group mb-2">
-                    <label for="lugar" class="sr-only">Email</label>
+                    <label for="lugar" class="sr-only">Lugar</label>
                     <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar" value="{{ old('lugar') }}">
                     @error('lugar')
                     <b>{{$message}}</b>
                     @enderror
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <label for="foto" class="sr-only">Password</label>
-                    <input type="file" class="form-control" id="foto" name="foto" value="{{ old('foto') }}">
+                    <label for="foto" class="sr-only">Foto</label>
+                    <input type="file" class="form-control" id="foto" name="foto" value="{{ old('foto') }}" required>
                     @error('foto')
                     <b>{{$message}}</b>
                     @enderror
@@ -46,7 +46,10 @@
                             <img src="{{$pista->foto}}" style="height:200px"/>
                             <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}} </h4>
                         <a href="{{ url('/editarPista/' . $pista->id ) }}" class="btn btn-success">Editar</a>
-                        <a class="btn btn-danger">Eliminar</a>
+                        <form action="{{url('/deletePista/' . $pista->id )}}" method="POST"
+                              style="display:inline"> {{ method_field('DELETE') }} @csrf
+                            <button type="submit" class="btn btn-danger" style="display:inline">Eliminar</button>
+                        </form>
                     </div> @endforeach</div>
 
 

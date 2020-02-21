@@ -45,18 +45,29 @@ class AdminController extends Controller
     }
 
     //Preguntar con ValidatFormsREquest
-    public function putEditar(Request $request, $id){
+    public function putEditar(ValidationFormRequest $request, $id){
+
+        $request->validated();
 
         $pista = Pista::findOrFail($id);
 
         $pista->lugar = $request->input('lugar');
 
-        if ($request->file('fotoEditar')){
-            $pista->foto = 'imagenes/' . $request->file('fotoEditar')->getClientOriginalName();
-            $request->file('fotoEditar')->move('imagenes', $request->file('fotoEditar')->getClientOriginalName());
+        if ($request->file('foto')){
+            $pista->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move('imagenes', $request->file('foto')->getClientOriginalName());
         }
 
         $pista->save();
+
+        return redirect('/admin');
+
+    }
+
+    public function deletePista($id){
+
+        $pista = Pista::findOrFail($id);
+        $pista->delete();
 
         return redirect('/admin');
 
