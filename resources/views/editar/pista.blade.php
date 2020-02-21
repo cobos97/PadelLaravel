@@ -9,6 +9,9 @@
         <div class="form-group mb-2">
             <label for="lugar" class="sr-only">Lugar</label>
             <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar" value="{{ $pista->lugar }}">
+            @error('lugar')
+            <b>{{$message}}</b>
+            @enderror
             {{--
             @error('lugar')
             <b>{{$message}}</b>
@@ -18,6 +21,9 @@
         <div class="form-group mx-sm-3 mb-2">
             <label for="foto" class="sr-only">Foto</label>
             <input type="file" class="form-control" id="foto" name="foto">
+            @error('foto')
+            <b>{{$message}}</b>
+            @enderror
         </div>
         <button type="submit" name="editar" value="pista" class="btn btn-success mb-2">Editar</button>
     </form>
