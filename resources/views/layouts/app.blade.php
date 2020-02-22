@@ -38,6 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('principal')}}">Principal</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('mensajes')}}">Mensajes</a>
+                    </li>
                     @if(Auth()->user())
                         @if(Auth()->user()->rol == 'admin')
                             <li class="nav-item">

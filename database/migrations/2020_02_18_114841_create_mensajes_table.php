@@ -20,8 +20,8 @@ class CreateMensajesTable extends Migration
             $table->string('contenido');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pista_id')->references('id')->on('pistas');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('pista_id')->references('id')->on('pistas')->onDelete('cascade');
 
         });
     }

@@ -27,3 +27,6 @@ Route::post('/admin', 'AdminController@insertar')->name('insertar')->middleware(
 Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_admin');
 Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
 Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
+
+Route::get('/mensajes', 'MensajesController@index')->name('mensajes')->middleware('verified');
+Route::post('/mensajes', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified');
