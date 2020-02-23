@@ -27,6 +27,14 @@ Route::post('/admin', 'AdminController@insertar')->name('insertar')->middleware(
 Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_admin');
 Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
 Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
+Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
+
+Route::get('/usuarios', 'UsuariosController@index')->name('usuarios')->middleware('es_admin');
+
+Route::get('/editarUsuario/{id}', 'UsuariosController@getEditar')->middleware('es_admin');
+Route::put('/editarUsuario/{id}', 'UsuariosController@putEditar')->middleware('es_admin');
+Route::delete('/deleteUsuario/{id}', 'UsuariosController@deleteUsuario')->middleware('es_admin');
 
 Route::get('/mensajes', 'MensajesController@index')->name('mensajes')->middleware('verified');
 Route::post('/mensajes', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified');
+

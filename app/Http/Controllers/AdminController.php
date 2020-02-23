@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidationFormRequest;
+use App\Mensaje;
 use App\Pista;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,9 +14,11 @@ class AdminController extends Controller
     public function index()
     {
         $arrayPistas = Pista::all();
+        $mensajes = Mensaje::all();
 
         return view('admin')
-            ->with('arrayPistas', $arrayPistas);
+            ->with('arrayPistas', $arrayPistas)
+            ->with('mensajes', $mensajes);
     }
 
     public function insertar(ValidationFormRequest $request)
@@ -68,6 +72,15 @@ class AdminController extends Controller
 
         $pista = Pista::findOrFail($id);
         $pista->delete();
+
+        return redirect('/admin');
+
+    }
+
+    public function deleteMensaje($id){
+
+        $mensaje = Mensaje::findOrFail($id);
+        $mensaje->delete();
 
         return redirect('/admin');
 
