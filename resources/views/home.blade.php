@@ -4,6 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+            <div class="card">
+                <div class="card-header">Contacta con nosotros</div>
+
+                <div class="card-body">
+                    Si tienes alguna duda que te podamos resolver pulsa <a href="{{route('contacta')}}">aqui</a>.
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">Dashboard</div>
 

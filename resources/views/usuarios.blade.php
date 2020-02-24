@@ -4,7 +4,6 @@
     <a href="{{route('admin')}}">Volver</a>
     <h1>Control de usuarios</h1>
 
-    <h2>Control de usuarios</h2>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -31,10 +30,12 @@
                     <a href="{{ url('/editarUsuario/' . $usuario->id ) }}" class="btn btn-success">Editar</a>
                 </td>
                 <td>
-                    <form action="{{url('/deleteUsuario/' . $usuario->id )}}" method="POST"
-                          style="display:inline"> {{ method_field('DELETE') }} @csrf
-                        <button type="submit" class="btn btn-danger" style="display:inline">Borrar</button>
-                    </form>
+                    @if($usuario->rol != 'admin')
+                        <form action="{{url('/deleteUsuario/' . $usuario->id )}}" method="POST"
+                              style="display:inline"> {{ method_field('DELETE') }} @csrf
+                            <button type="submit" class="btn btn-danger" style="display:inline">Borrar</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

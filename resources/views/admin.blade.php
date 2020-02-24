@@ -3,6 +3,7 @@
 @section('content')
     <h1>Zona de administración</h1>
 
+    <a href="{{route('getContactas')}}">Listado de contactas</a><br>
     <a href="{{route('usuarios')}}">Control de usuarios</a>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -42,7 +43,11 @@
                 <button type="submit" name="insertar" value="pista" class="btn btn-primary mb-2">Insertar</button>
             </form>
             <h3>Listado de pistas</h3>
-            <div class="row"> @foreach( $arrayPistas as $pista)
+            <div class="row">
+                @if(count($arrayPistas)==0)
+                    <div class="alert alert-danger">No hay pistas guardadas en el sistema</div>
+                @endif
+                @foreach( $arrayPistas as $pista)
                     <div class="col-xs-6 col-sm-4 col-md-3 text-center m-3">
                         <img src="{{asset($pista->foto)}}" style="height:200px"/>
                         <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}} </h4>
@@ -66,6 +71,9 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($mensajes)==0)
+                    <div class="alert alert-danger">No hay mensajes guardados en el sistema</div>
+                @endif
                 @foreach($mensajes as $mensaje)
                     <tr>
                         <th scope="row">{{$mensaje->user->name}}</th>

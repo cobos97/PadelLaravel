@@ -13,7 +13,7 @@ class MensajesController extends Controller
     public function index()
     {
         $pistas = Pista::all();
-        $mensajes = Mensaje::all();
+        $mensajes = Mensaje::orderBy('created_at', 'desc')->get();
 
 
         return view('mensajes')

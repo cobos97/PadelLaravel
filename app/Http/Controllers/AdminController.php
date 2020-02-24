@@ -44,6 +44,9 @@ class AdminController extends Controller
     public function getEditar($id){
         $pista = Pista::findOrFail($id);
 
+        $pista->lugar = '_'.$pista->lugar;
+        $pista->save();
+
         return view('editar.pista')
             ->with('pista', $pista);
     }

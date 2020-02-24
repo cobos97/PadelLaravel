@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Pista;
 use App\Mensaje;
+use App\Contacta;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         self::seedUsers();
         self::seedPistas();
         self::seedMensajes();
+        self::seedContactas();
     }
 
     private function seedUsers(){
@@ -80,6 +82,17 @@ class DatabaseSeeder extends Seeder
         $mensaje->user_id = 2;
         $mensaje->pista_id = 2;
         $mensaje->save();
+
+    }
+
+    private function seedContactas(){
+
+        DB::table('contactas')->delete();
+
+        $contacta = new Contacta();
+        $contacta->correo = 'a@a.com';
+        $contacta->contenido = 'Ejemplo de mensaje desde contacta';
+        $contacta->save();
 
     }
 
