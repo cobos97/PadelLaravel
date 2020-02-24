@@ -7,16 +7,8 @@
         @csrf
         {{method_field('PUT')}}
         <div class="form-group mb-2">
-            <label for="lugar" class="sr-only">Lugar</label>
-            <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar" value="{{ $pista->lugar }}">
-            @error('lugar')
-            <b>{{$message}}</b>
-            @enderror
-            {{--
-            @error('lugar')
-            <b>{{$message}}</b>
-            @enderror
-            --}}
+            <h2>{{$pista->lugar}}</h2>
+            <img src="{{ asset($pista->foto)}}">
         </div>
         <div class="form-group mx-sm-3 mb-2">
             <label for="foto" class="sr-only">Foto</label>

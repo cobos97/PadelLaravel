@@ -44,7 +44,7 @@
             <h3>Listado de pistas</h3>
             <div class="row"> @foreach( $arrayPistas as $pista)
                     <div class="col-xs-6 col-sm-4 col-md-3 text-center m-3">
-                        <img src="{{$pista->foto}}" style="height:200px"/>
+                        <img src="{{asset($pista->foto)}}" style="height:200px"/>
                         <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}} </h4>
                         <a href="{{ url('/editarPista/' . $pista->id ) }}" class="btn btn-success">Editar</a>
                         <form action="{{url('/deletePista/' . $pista->id )}}" method="POST"

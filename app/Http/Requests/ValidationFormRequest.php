@@ -25,7 +25,7 @@ class ValidationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'lugar' => 'required|min:5',
+            'lugar' => 'required|min:5|unique:pistas',
             'foto' => 'mimes:jpeg,png,jpg'
         ];
     }

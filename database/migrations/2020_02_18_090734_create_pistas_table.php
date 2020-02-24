@@ -16,7 +16,7 @@ class CreatePistasTable extends Migration
         Schema::create('pistas', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('lugar');
+            $table->string('lugar')->unique();
             $table->string('foto');
 
             $table->timestamps();

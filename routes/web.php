@@ -29,6 +29,8 @@ Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_adm
 Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
 Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
 
+Route::delete('/deleteMensajeUser/{id}', 'MensajesController@deleteMensaje');
+
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios')->middleware('es_admin');
 
 Route::get('/editarUsuario/{id}', 'UsuariosController@getEditar')->middleware('es_admin');

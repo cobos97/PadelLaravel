@@ -30,6 +30,12 @@
                 </div>
                 <p class="mb-1">{{$mensaje->contenido}}</p>
                 {{--<small>Donec id elit non mi porta.</small>--}}
+                @if (Auth()->user()->name == $mensaje->user->name)
+                    <form action="{{url('/deleteMensajeUser/' . $mensaje->id )}}" method="POST"
+                          style="display:inline"> {{ method_field('DELETE') }} @csrf
+                        <button type="submit" class="btn btn-danger" style="display:inline">Borrar</button>
+                    </form>
+                @endif
             </div>
         @endforeach
     </div>

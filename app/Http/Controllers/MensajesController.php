@@ -30,4 +30,13 @@ class MensajesController extends Controller
 
         return redirect('/mensajes');
     }
+
+    public function deleteMensaje($id){
+
+        $mensaje = Mensaje::findOrFail($id);
+        $mensaje->delete();
+
+        return redirect('/mensajes');
+
+    }
 }
