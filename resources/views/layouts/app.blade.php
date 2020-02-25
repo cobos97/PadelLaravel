@@ -9,6 +9,8 @@
 
     <title>{{ config('APP_NAME', 'LaChiquita') }}</title>
 
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
