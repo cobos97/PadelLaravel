@@ -36,6 +36,8 @@ class UsuariosController extends Controller
 
         $usuario->save();
 
+        flash('Usuario editado con exito')->success();
+
         return redirect('/usuarios');
 
     }
@@ -44,6 +46,8 @@ class UsuariosController extends Controller
 
         $usuario = User::findOrFail($id);
         $usuario->delete();
+
+        flash('Usuario borrado con exito')->error();
 
         return redirect('/usuarios');
 

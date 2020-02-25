@@ -38,6 +38,8 @@ class AdminController extends Controller
                 break;
         }
 
+        flash('Pista insertada con éxito')->success();
+
         return redirect('/admin');
     }
 
@@ -67,6 +69,8 @@ class AdminController extends Controller
 
         $pista->save();
 
+        flash('Pista edita con éxito')->success();
+
         return redirect('/admin');
 
     }
@@ -76,6 +80,8 @@ class AdminController extends Controller
         $pista = Pista::findOrFail($id);
         $pista->delete();
 
+        flash('Pista borrada con éxito')->error();
+
         return redirect('/admin');
 
     }
@@ -84,6 +90,8 @@ class AdminController extends Controller
 
         $mensaje = Mensaje::findOrFail($id);
         $mensaje->delete();
+
+        flash('Mensaje borrado con éxito')->error();
 
         return redirect('/admin');
 

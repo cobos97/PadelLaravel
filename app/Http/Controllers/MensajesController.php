@@ -28,6 +28,8 @@ class MensajesController extends Controller
         $mensaje->user_id = Auth()->user()->id;
         $mensaje->save();
 
+        flash('Mensaje enviado con éxito')->success();
+
         return redirect('/mensajes');
     }
 
@@ -35,6 +37,8 @@ class MensajesController extends Controller
 
         $mensaje = Mensaje::findOrFail($id);
         $mensaje->delete();
+
+        flash('Mensaje borrado con éxito')->error();
 
         return redirect('/mensajes');
 

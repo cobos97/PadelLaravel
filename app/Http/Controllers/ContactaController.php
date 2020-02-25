@@ -17,6 +17,8 @@ class ContactaController extends Controller
         $contacta->contenido = $request->input('contenido');
         $contacta->save();
 
+        flash('Tu mensaje se ha enviado con exito')->success();
+
         return redirect('home');
     }
 
@@ -30,6 +32,8 @@ class ContactaController extends Controller
     public  function deleteContacta($id){
         $contacta = Contacta::findOrFail($id);
         $contacta->delete();
+
+        flash('EL mensaje leido se ha borrado corectamente')->success();
 
         return redirect(route('getContactas'));
     }
