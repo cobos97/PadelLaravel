@@ -10884,3 +10884,57 @@ a.text-dark:focus {
   }
 }
 
+/*NAVBAR*/
+
+.navbar {
+  background-color: #23346d !important;
+}
+
+.navbar .nav-item .nav-link {
+  color: #fff !important;
+}
+
+.navbar-brand {
+  color: #73c6cf !important;
+}
+
+/*CARDS*/
+
+.card {
+  margin-top: 10px;
+}
+
+.card-header {
+  background-color: #73c6cf !important;
+}
+
+/*FOOTER*/
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #23346d;
+  color: white;
+  text-align: center;
+}
+
+/*ENLACES*/
+
+.enlace {
+  color: #ff4d71 !important;
+}
+
+/*404*/
+
+.error404 {
+  font-size: 60px;
+  color: #23346d;
+}
+
+.error404 .volver {
+  background-color: #ff4d71;
+  color: #fff;
+}
+

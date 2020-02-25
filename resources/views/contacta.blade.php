@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{route('home')}}">Volver</a>
+    <a href="{{route('home')}}" class="enlace">Volver</a>
     <h1>Contacta con nosotros</h1>
 
     <form class="form" action="" method="post" enctype="multipart/form-data">

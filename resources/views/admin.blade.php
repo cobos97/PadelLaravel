@@ -3,8 +3,8 @@
 @section('content')
     <h1>Zona de administración</h1>
 
-    <a href="{{route('getContactas')}}">Listado de contactas</a><br>
-    <a href="{{route('usuarios')}}">Control de usuarios</a>
+    <a href="{{route('getContactas')}}" class="enlace">Listado de contactas</a><br>
+    <a href="{{route('usuarios')}}" class="enlace">Control de usuarios</a>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -48,7 +48,7 @@
                     <div class="alert alert-danger">No hay pistas guardadas en el sistema</div>
                 @endif
                 @foreach( $arrayPistas as $pista)
-                    <div class="col-xs-6 col-sm-4 col-md-3 text-center m-3">
+                    <div class="col-md-5 col-xl-3 text-center m-3">
                         <img src="{{asset($pista->foto)}}" style="height:200px"/>
                         <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}} </h4>
                         <a href="{{ url('/editarPista/' . $pista->id ) }}" class="btn btn-success">Editar</a>

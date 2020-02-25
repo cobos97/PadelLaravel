@@ -1,0 +1,48 @@
+/*NAVBAR*/
+.navbar{
+  background-color: $bluewpt !important;
+}
+
+.navbar .nav-item .nav-link{
+  color: $white !important;
+}
+
+.navbar-brand{
+  color: $bluewptclarito !important;
+}
+
+/*CARDS*/
+.card{
+  margin-top: 10px;
+}
+
+.card-header{
+  background-color: $bluewptclarito !important;
+}
+
+/*FOOTER*/
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $bluewpt;
+  color: white;
+  text-align: center;
+}
+
+/*ENLACES*/
+.enlace{
+  color: $pinkwpt !important;
+}
+
+/*404*/
+.error404{
+  font-size: 60px;
+  color: $bluewpt;
+}
+
+.error404 .volver{
+  background-color: $pinkwpt;
+  color: $white;
+}

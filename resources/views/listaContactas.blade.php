@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{route('admin')}}">Volver</a>
+    <a href="{{route('admin')}}" class="enlace">Volver</a>
     <h1>Mensajes enviados a través de la página "Contacta"</h1>
 
     @if(count($contactas)==0)

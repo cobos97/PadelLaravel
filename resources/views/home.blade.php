@@ -9,7 +9,7 @@
                 <div class="card-header">Contacta con nosotros</div>
 
                 <div class="card-body">
-                    Si tienes alguna duda que te podamos resolver pulsa <a href="{{route('contacta')}}">aqui</a>.
+                    Si tienes alguna duda que te podamos resolver pulsa <a href="{{route('contacta')}}" class="enlace">aqui</a>.
                 </div>
             </div>
 

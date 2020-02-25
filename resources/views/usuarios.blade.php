@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{route('admin')}}">Volver</a>
+    <a href="{{route('admin')}}" class="enlace">Volver</a>
     <h1>Control de usuarios</h1>
 
     <table class="table table-striped">
