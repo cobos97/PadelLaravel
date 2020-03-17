@@ -10,4 +10,9 @@ class Pista extends Model
     {
         return $this->hasMany('App\Mensaje');
     }
+
+    public function reservas()
+    {
+        return $this->hasMany('App\Reserva');
+    }
 }

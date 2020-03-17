@@ -18,6 +18,9 @@ class CreatePistasTable extends Migration
 
             $table->string('lugar')->unique();
             $table->string('foto');
+            $table->string('descripcion');
+            $table->string('coorX');
+            $table->string('coorY');
 
             $table->timestamps();
         });

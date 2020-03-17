@@ -39,3 +39,6 @@ Route::get('/contacta', 'ContactaController@index')->name('contacta');
 Route::post('/contacta', 'ContactaController@enviarContacta');
 Route::get('/listaContactas', 'ContactaController@getContactas')->name('getContactas')->middleware('es_admin');
 Route::delete('/deleteContacta/{id}', 'ContactaController@deleteContacta')->middleware('es_admin');
+
+Route::get('/pistas', 'PistasController@index')->name('pistas')->middleware('verified');
+Route::get('/pista/{id}', 'PistasController@getPista')->name('pista')->middleware('verified');

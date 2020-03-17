@@ -53,11 +53,17 @@ class DatabaseSeeder extends Seeder
         $pista = new Pista();
         $pista->lugar = 'Moriles';
         $pista->foto = 'imagenes/moriles.jpg';
+        $pista->descripcion = 'descripcion';
+        $pista->coorX = '123';
+        $pista->coorY = '123';
         $pista->save();
 
         $pista = new Pista();
         $pista->lugar = 'FernanNuñez';
         $pista->foto = 'imagenes/fernannuñez.jpg';
+        $pista->descripcion = 'descripcion';
+        $pista->coorX = '123';
+        $pista->coorY = '123';
         $pista->save();
 
     }
