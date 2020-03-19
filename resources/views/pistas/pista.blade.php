@@ -6,6 +6,17 @@
     <div id="x" hidden>{{$pista->coorX}}</div>
     <div id="y" hidden>{{$pista->coorY}}</div>
 
+    <h1>{{$pista->lugar}}</h1>
+    <div class="row">
+        <div class="col">
+            <img src="{{asset($pista->foto)}}" style="height:350px"/>
+        </div>
+        <div class="col">
+            <p>{{$pista->descripcion}}</p>
+        </div>
+    </div>
+
+
 @endsection
 
 @section('coor')

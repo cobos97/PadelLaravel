@@ -106,6 +106,8 @@
 
             @yield('content')
 
+            <h2 style="margin-top: 50px">Localización</h2>
+
             <div id="mapid"></div>
 
         </div>

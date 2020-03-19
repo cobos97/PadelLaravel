@@ -9,7 +9,7 @@
 
     <title>{{ config('APP_NAME', 'LaChiquita') }}</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -100,7 +100,8 @@
     </main>
 </div>
 <div class="footer text-center">
-    <p>&copy; <?php print date("Y"); ?> <a href="https://iesmarquesdecomares.org/" class="enlace"> IES Marqués de Comares.</a></p>
+    <p>&copy; <?php print date("Y"); ?> <a href="https://iesmarquesdecomares.org/" class="enlace"> IES Marqués de
+            Comares.</a></p>
 </div>
 </body>
 </html>
