@@ -10,37 +10,39 @@ use Illuminate\Support\Facades\DB;
 
 class MensajesController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $pistas = Pista::all();
-        $mensajes = Mensaje::orderBy('created_at', 'desc')->get();
+        //$pistas = Pista::all();
+        $mensajes = Mensaje::where('pista_id', $id)->orderBy('created_at', 'desc')->get();
+        //::orderBy('created_at', 'desc')
 
 
         return view('mensajes')
-            ->with('pistas', $pistas)
+            ->with('pista_id', $id)
             ->with('mensajes', $mensajes);
     }
 
-    public function enviar(Request $request){
+    public function enviar(Request $request, $id){
         $mensaje = new Mensaje();
         $mensaje->contenido = $request->input('contenido');
-        $mensaje->pista_id = $request->input('pista');
+        //$mensaje->pista_id = $request->input('pista');
+        $mensaje->pista_id = $id;
         $mensaje->user_id = Auth()->user()->id;
         $mensaje->save();
 
         flash('Mensaje enviado con éxito')->success();
 
-        return redirect('/mensajes');
+        return redirect('/mensajes/' . $id);
     }
 
-    public function deleteMensaje($id){
+    public function deleteMensaje($pista_id, $id){
 
         $mensaje = Mensaje::findOrFail($id);
         $mensaje->delete();
 
         flash('Mensaje borrado con éxito')->error();
 
-        return redirect('/mensajes');
+        return redirect('/mensajes/' . $pista_id);
 
     }
 }

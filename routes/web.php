@@ -24,7 +24,7 @@ Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_adm
 Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
 Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
 
-Route::delete('/deleteMensajeUser/{id}', 'MensajesController@deleteMensaje');
+Route::delete('/deleteMensajeUser/{pista_id}/{id}', 'MensajesController@deleteMensaje');
 
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios')->middleware('es_admin');
 
@@ -32,8 +32,8 @@ Route::get('/editarUsuario/{id}', 'UsuariosController@getEditar')->middleware('e
 Route::put('/editarUsuario/{id}', 'UsuariosController@putEditar')->middleware('es_admin');
 Route::delete('/deleteUsuario/{id}', 'UsuariosController@deleteUsuario')->middleware('es_admin');
 
-Route::get('/mensajes', 'MensajesController@index')->name('mensajes')->middleware('verified');
-Route::post('/mensajes', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified');
+Route::get('/mensajes/{id}', 'MensajesController@index')->name('mensajes')->middleware('verified');
+Route::post('/mensajes/{id}', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified');
 
 Route::get('/contacta', 'ContactaController@index')->name('contacta');
 Route::post('/contacta', 'ContactaController@enviarContacta');
@@ -43,7 +43,3 @@ Route::delete('/deleteContacta/{id}', 'ContactaController@deleteContacta')->midd
 Route::get('/pistas', 'PistasController@index')->name('pistas')->middleware('verified');
 Route::get('/pista/{id}', 'PistasController@getPista')->name('pista')->middleware('verified');
 
-
-Route::get('/prueba', function () {
-    return view('pistas.prueba');
-});
