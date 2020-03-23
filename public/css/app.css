@@ -10938,3 +10938,30 @@ a.text-dark:focus {
   color: #fff;
 }
 
+/*MENSAJES*/
+
+.mensaje {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.fecha_propio {
+  margin-right: 40px;
+}
+
+.fecha_ajeno {
+  margin-left: 40px;
+}
+
+.propio {
+  background-color: blue;
+  color: white;
+}
+
+.ajeno {
+  background-color: silver;
+}
+
