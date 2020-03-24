@@ -13,40 +13,79 @@ class AdminController extends Controller
     //
     public function index()
     {
-        $arrayPistas = Pista::all();
-        $mensajes = Mensaje::all();
-
-        return view('admin')
-            ->with('arrayPistas', $arrayPistas)
-            ->with('mensajes', $mensajes);
+        return view('admin');
     }
 
-    public function insertar(ValidationFormRequest $request)
+    public function indexPistas()
     {
-        switch ($request->input('insertar')) {
-            case 'pista':
-                $request->validated();
+        $arrayPistas = Pista::all();
+        return view('admin.pistas')
+            ->with('arrayPistas', $arrayPistas);
+    }
 
+    public function indexMensajes()
+    {
+        $mensajes = Mensaje::all();
+        $arrayPistas = Pista::all();
 
-                $pista = new Pista();
-                $pista->lugar = $request->input('lugar');
-                $pista->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
-                $pista->save();
+        return view('admin.mensajes')
+            ->with('mensajes', $mensajes)
+            ->with('pistas', $arrayPistas);
+    }
 
-                $request->file('foto')->move('imagenes', $request->file('foto')->getClientOriginalName());
+    public function filtroMensajes(Request $request)
+    {
+        $arrayPistas = Pista::all();
 
-                break;
+        $users = User::where('name', $request->input('nombre'))
+            ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->get();
+
+        $mensajes = Mensaje::where('user_id', 0)->get();
+
+        if ($request->input('pista') != null) {
+            foreach ($users as $user) {
+                $aux = Mensaje::where('user_id', $user->id)->where('pista_id', $request->input('pista') * 1)->get();
+                $mensajes = $mensajes->merge($aux);
+            }
+        } else {
+            foreach ($users as $user) {
+                $aux = Mensaje::where('user_id', $user->id)->get();
+                $mensajes = $mensajes->merge($aux);
+            }
         }
+
+
+        return view('admin.mensajes')
+            ->with('mensajes', $mensajes)
+            ->with('pistas', $arrayPistas);
+    }
+
+    public function insertarPista(ValidationFormRequest $request)
+    {
+        $request->validated();
+
+
+        $pista = new Pista();
+        $pista->lugar = $request->input('lugar');
+        $pista->descripcion = $request->input('descripcion');
+        $pista->coorx = $request->input('coorx');
+        $pista->coory = $request->input('coory');
+        $pista->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
+        $pista->save();
+
+        $request->file('foto')->move('imagenes', $request->file('foto')->getClientOriginalName());
+
 
         flash('Pista insertada con éxito')->success();
 
-        return redirect('/admin');
+        return redirect('/admin/pistas');
     }
 
-    public function getEditar($id){
+    public function getEditar($id)
+    {
         $pista = Pista::findOrFail($id);
 
-        $pista->lugar = '_'.$pista->lugar;
+        $pista->lugar = '_' . $pista->lugar;
         $pista->save();
 
         return view('editar.pista')
@@ -54,15 +93,19 @@ class AdminController extends Controller
     }
 
     //Preguntar con ValidatFormsREquest
-    public function putEditar(ValidationFormRequest $request, $id){
+    public function putEditar(ValidationFormRequest $request, $id)
+    {
 
         $request->validated();
 
         $pista = Pista::findOrFail($id);
 
         $pista->lugar = $request->input('lugar');
+        $pista->descripcion = $request->input('descripcion');
+        $pista->coorx = $request->input('coorx');
+        $pista->coory = $request->input('coory');
 
-        if ($request->file('foto')){
+        if ($request->file('foto')) {
             $pista->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
             $request->file('foto')->move('imagenes', $request->file('foto')->getClientOriginalName());
         }
@@ -71,29 +114,31 @@ class AdminController extends Controller
 
         flash('Pista edita con éxito')->success();
 
-        return redirect('/admin');
+        return redirect('/admin/pistas');
 
     }
 
-    public function deletePista($id){
+    public function deletePista($id)
+    {
 
         $pista = Pista::findOrFail($id);
         $pista->delete();
 
         flash('Pista borrada con éxito')->error();
 
-        return redirect('/admin');
+        return redirect('/admin/pistas');
 
     }
 
-    public function deleteMensaje($id){
+    public function deleteMensaje($id)
+    {
 
         $mensaje = Mensaje::findOrFail($id);
         $mensaje->delete();
 
         flash('Mensaje borrado con éxito')->error();
 
-        return redirect('/admin');
+        return redirect('/admin/mensajes');
 
     }
 

@@ -17,11 +17,15 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware('es_admin');
-Route::post('/admin', 'AdminController@insertar')->name('insertar')->middleware('es_admin');
 
+Route::get('/admin/pistas', 'AdminController@indexPistas')->name('pistasAdmin')->middleware('es_admin');
+Route::post('/admin/pistas', 'AdminController@insertarPista')->name('insertarPista')->middleware('es_admin');
 Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_admin');
 Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
 Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
+
+Route::get('/admin/mensajes', 'AdminController@indexMensajes')->name('mensajesAdmin')->middleware('es_admin');
+Route::post('/admin/mensajes', 'AdminController@filtroMensajes')->middleware('es_admin');
 Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
 
 Route::delete('/deleteMensajeUser/{pista_id}/{id}', 'MensajesController@deleteMensaje');
