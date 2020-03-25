@@ -45,5 +45,6 @@ Route::get('/listaContactas', 'ContactaController@getContactas')->name('getConta
 Route::delete('/deleteContacta/{id}', 'ContactaController@deleteContacta')->middleware('es_admin');
 
 Route::get('/pistas', 'PistasController@index')->name('pistas')->middleware('verified');
+Route::get('/pistas/action', 'PistasController@action')->name('pistas.action')->middleware('verified');
 Route::get('/pista/{id}', 'PistasController@getPista')->name('pista')->middleware('verified');
 
