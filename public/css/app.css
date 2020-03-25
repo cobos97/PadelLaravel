@@ -10965,3 +10965,11 @@ a.text-dark:focus {
   background-color: silver;
 }
 
+.fotoPista {
+  height: 200px;
+}
+
+.pista {
+  float: left;
+}
+

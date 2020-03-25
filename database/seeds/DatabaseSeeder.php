@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->lugar = 'FernanNuñez';
-        $pista->foto = 'imagenes/fernannuñez.jpg';
+        $pista->foto = 'imagenes/fernannunez.jpg';
         $pista->descripcion = 'descripcion';
         $pista->coorX = '37.44';
         $pista->coorY = '-4.60';

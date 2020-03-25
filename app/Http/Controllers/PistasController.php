@@ -28,8 +28,6 @@ class PistasController extends Controller
     function action(Request $request)
     {
         //para mas solo hay que ir juntando orWhere por detras
-
-
         if ($request->ajax()) {
             $query = $request->get('query');
             if ($query != '') {
@@ -42,18 +40,19 @@ class PistasController extends Controller
             if ($total_row > 0) {
                 $output = '';
                 foreach ($data as $row) {
-                    //$object = ['lugar' => $row->lugar, 'descripcion' => $row->descripcion, 'coorx' => $row->coorX, 'coory' => $row->coorY];
-                    //$output[$row->id] = $object;
-                    //$output .= '<tr><td>' . $row->lugar . '</td><td>' . $row->descripcion . '</td><td>' . $row->coorX . '</td><td>' . $row->coorY . '</td></tr>';
-                    $output .= '<tr><td>' . $row->lugar . '<td>' . $row->descripcion . '<td>' . $row->coorX . '<td>' . $row->coorY;
+                    $output .= "<div class=\"col-md-5 col-xl-3 text-center m-3\">
+                                <img src=\"" . $row->foto . "\" style=\"height:200px\"/>
+                                <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "</h4>
+                                <a href=\"/pista/" . $row->id . "\" class=\"btn btn-primary\">Ver</a>
+                                <a href=\"/mensajes/" . $row->id . "\" class=\"btn btn-success\">Chat</a>
+                                </div>
+                                ";
                 }
             } else {
-                $output = '<><td align="center" colspan="4">No se encontraron pistas';
+                $output = '<div class="alert alert-danger">No se encontraron pistas</div>';
             }
-            $data = array('table_data' => $output, 'total_data' => $total_row);
-            //echo json_encode($output, JSON_HEX_QUOT | JSON_HEX_TAG);
+            //$data = array('table_data' => $output, 'total_data' => $total_row);
             echo json_encode($output);
-
         }
 
 
