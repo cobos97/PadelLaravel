@@ -1,5 +1,10 @@
 /*NAVBAR*/
 .navbar{
+  background: rgba(0,0,0,0.7) !important;
+  transition: all .65s ease !important;
+}
+
+.nav-scroll{
   background-color: $bluewpt !important;
 }
 

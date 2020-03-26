@@ -10887,6 +10887,11 @@ a.text-dark:focus {
 /*NAVBAR*/
 
 .navbar {
+  background: rgba(0, 0, 0, 0.7) !important;
+  transition: all 0.65s ease !important;
+}
+
+.nav-scroll {
   background-color: #23346d !important;
 }
 
@@ -10966,7 +10971,7 @@ a.text-dark:focus {
 }
 
 .fotoPista {
-  height: 200px;
+  width: 270px;
 }
 
 .pista {

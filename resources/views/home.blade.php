@@ -13,6 +13,10 @@
                 </div>
             </div>
 
+            <div style="height: 500px; background-color: salmon"></div>
+            <div style="height: 500px; background-color: greenyellow"></div>
+            <div style="height: 500px; background-color: deeppink"></div>
+
             {{--
             <div class="card">
                 <div class="card-header">Dashboard</div>
