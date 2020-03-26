@@ -115,7 +115,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <a href="{{route('pistas')}}"><img class="imgcar" style="width: 100%"
+                <a href="{{route('pistas')}}"><img class="imgcar1" style="width: 100%"
                                                    src="{{asset('imagenes/bg_padel.jpg')}}" alt="..."></a>
                 <div class="carousel-caption">
                     <h5>Pistas</h5>
@@ -123,14 +123,14 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="imgcar" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
+                <img class="imgcar2" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
                 <div class="carousel-caption">
                     <h5>No se</h5>
                     <p class=" d-none d-md-block">...</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="imgcar" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
+                <img class="imgcar3" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
                 <div class="carousel-caption">
                     <h5>Contacto</h5>
                     <p class=" d-none d-md-block">...</p>
