@@ -107,47 +107,8 @@
         </div>
     </nav>
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <a href="{{route('pistas')}}"><img class="imgcar1" style="width: 100%"
-                                                   src="{{asset('imagenes/bg_padel.jpg')}}" alt="..."></a>
-                <div class="carousel-caption">
-                    <h5>Pistas</h5>
-                    <p class="d-none d-md-block">Visita nuestro listado de pistas</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="imgcar2" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
-                <div class="carousel-caption">
-                    <h5>No se</h5>
-                    <p class=" d-none d-md-block">...</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="imgcar3" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
-                <div class="carousel-caption">
-                    <h5>Contacto</h5>
-                    <p class=" d-none d-md-block">...</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
     <main class="py-4">
-        <div class="container">
+        <div class="container" style="margin-top: 50px">
             @include('flash::message')
 
             @yield('content')
@@ -172,34 +133,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-<script>
-
-    if (isMobile()) {
-        $('.imgcar1').attr('src', "{{asset('imagenes/chica.jpg')}}");
-        $('.imgcar2').attr('src', "{{asset('imagenes/chica.jpg')}}");
-        $('.imgcar3').attr('src', "{{asset('imagenes/bg_pelota.jpg')}}");
-    }
-
-    function isMobile() {
-        return (
-            (navigator.userAgent.match(/Android/i)) ||
-            (navigator.userAgent.match(/webOS/i)) ||
-            (navigator.userAgent.match(/iPhone/i)) ||
-            (navigator.userAgent.match(/iPod/i)) ||
-            (navigator.userAgent.match(/iPad/i)) ||
-            (navigator.userAgent.match(/BlackBerry/i))
-        );
-    }
-
-
-    $(window).scroll(function () {
-        if ($('#menu').offset().top > 120) {
-            $('#menu').addClass('nav-scroll');
-        } else {
-            $('#menu').removeClass('nav-scroll');
-        }
-    })
-</script>
+@yield('scripts')
 
 @yield('coor')
 

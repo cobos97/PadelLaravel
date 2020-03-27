@@ -45,6 +45,7 @@ class PistasController extends Controller
                                 <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "</h4>
                                 <a href=\"/pista/" . $row->id . "\" class=\"btn btn-primary\">Ver</a>
                                 <a href=\"/mensajes/" . $row->id . "\" class=\"btn btn-success\">Chat</a>
+                                <a href=\"/reservas/" . $row->id . "\" class=\"btn btn-warning\">Reservas</a>
                                 </div>
                                 ";
                 }

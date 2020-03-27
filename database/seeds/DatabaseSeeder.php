@@ -66,6 +66,14 @@ class DatabaseSeeder extends Seeder
         $pista->coorY = '-4.60';
         $pista->save();
 
+        $pista = new Pista();
+        $pista->lugar = 'Lucena';
+        $pista->foto = 'imagenes/lucena.jpg';
+        $pista->descripcion = 'descripcion';
+        $pista->coorX = '37.44';
+        $pista->coorY = '-4.60';
+        $pista->save();
+
     }
 
     private function seedMensajes(){
@@ -78,15 +86,33 @@ class DatabaseSeeder extends Seeder
         $mensaje->save();
 
         $mensaje = new Mensaje();
+        $mensaje->contenido = 'Primer mensaje de prueba';
+        $mensaje->user_id = 2;
+        $mensaje->pista_id = 1;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
         $mensaje->contenido = 'Segundo mensaje de prueba';
         $mensaje->user_id = 1;
         $mensaje->pista_id = 2;
         $mensaje->save();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = 'Tercer mensaje de prueba';
+        $mensaje->contenido = 'Segundo mensaje de prueba';
         $mensaje->user_id = 2;
         $mensaje->pista_id = 2;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Tercer mensaje de prueba';
+        $mensaje->user_id = 2;
+        $mensaje->pista_id = 3;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Tercer mensaje de prueba';
+        $mensaje->user_id = 2;
+        $mensaje->pista_id = 3;
         $mensaje->save();
 
     }
@@ -98,6 +124,11 @@ class DatabaseSeeder extends Seeder
         $contacta = new Contacta();
         $contacta->correo = 'a@a.com';
         $contacta->contenido = 'Ejemplo de mensaje desde contacta';
+        $contacta->save();
+
+        $contacta = new Contacta();
+        $contacta->correo = 'b@b.com';
+        $contacta->contenido = 'Segundo ejemplo de mensaje desde contacta';
         $contacta->save();
 
     }

@@ -1,7 +1,12 @@
 /*NAVBAR*/
 .navbar{
+  //background: rgba(0,0,0,0.7) !important;
+  background-color: $bluewpt !important;
+  //transition: all .65s ease !important;
+}
+
+.nav-no-scroll{
   background: rgba(0,0,0,0.7) !important;
-  transition: all .65s ease !important;
 }
 
 .nav-scroll{

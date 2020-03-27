@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <a href="{{route('pistas')}}" class="enlace">Volver</a>
+
     <form class="form" action="" method="post">
         @csrf
         <div class="row">

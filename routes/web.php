@@ -48,3 +48,5 @@ Route::get('/pistas', 'PistasController@index')->name('pistas')->middleware('ver
 Route::get('/pistas/action', 'PistasController@action')->name('pistas.action')->middleware('verified');
 Route::get('/pista/{id}', 'PistasController@getPista')->name('pista')->middleware('verified');
 
+Route::get('/reservas/{id}', 'ReservasController@index')->name('reservas')->middleware('verified');
+

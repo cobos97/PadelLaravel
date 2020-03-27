@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <a href="{{route('pistas')}}" class="enlace">Volver</a>
+
     {{--Coordenadas--}}
     <div id="x" hidden>{{$pista->coorX}}</div>
     <div id="y" hidden>{{$pista->coorY}}</div>
@@ -29,7 +31,6 @@
 
         var x = document.getElementById('x').innerHTML;
         var y = document.getElementById('y').innerHTML;
-
 
 
         var mymap = L.map('mapid').setView([x, y], 16);

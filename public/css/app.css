@@ -10887,8 +10887,11 @@ a.text-dark:focus {
 /*NAVBAR*/
 
 .navbar {
+  background-color: #23346d !important;
+}
+
+.nav-no-scroll {
   background: rgba(0, 0, 0, 0.7) !important;
-  transition: all 0.65s ease !important;
 }
 
 .nav-scroll {
