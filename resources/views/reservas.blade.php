@@ -4,16 +4,57 @@
 
     <a href="{{route('pistas')}}" class="enlace">Volver</a>
 
-    <table>
-        @for($i=0; $i < 10; $i++)
-            <tr>
-                @for($j=0; $j < 10; $j++)
-                    <td>
-                        celda
-                    </td>
-                @endfor
-            </tr>
-        @endfor
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th></th>
+            <th>5 pm</th>
+            <th>7 pm</th>
+            <th>9 pm</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>Hoy</td>
+            @for($j=0; $j < 3; $j++)
+                <td>
+                    <form action="{{url('/reservaPista/' . $pista->id )}}" method="POST"
+                          style="display:inline"> @csrf
+                        <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
+                        <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
+                    </form>
+                </td>
+                <div hidden>{{$fecha+=60*60*2}}</div>
+            @endfor
+        </tr>
+        <div hidden>{{$fecha+=60*60*17}}</div>
+        <tr>
+            <td>Mañana</td>
+            @for($j=0; $j < 3; $j++)
+                <td>
+                    <form action="{{url('/reservaPista/' . $pista->id )}}" method="POST"
+                          style="display:inline"> @csrf
+                        <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
+                        <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
+                    </form>
+                </td>
+                <div hidden>{{$fecha+=60*60*2}}</div>
+            @endfor
+        </tr>
+        <div hidden>{{$fecha+=60*60*18}}</div>
+        <tr>
+            <td>Pasado</td>
+            @for($j=0; $j < 3; $j++)
+                <td>
+                    {{--date('H:i d/m/Y', $fecha)--}}
+                    <form action="{{url('/reservaPista/' . $pista->id )}}" method="POST"
+                          style="display:inline"> @csrf
+                        <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
+                        <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
+                    </form>
+                </td>
+                <div hidden>{{$fecha+=60*60*2}}</div>
+            @endfor
+        </tr>
     </table>
 
 @endsection

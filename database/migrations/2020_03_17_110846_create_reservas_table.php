@@ -18,7 +18,7 @@ class CreateReservasTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pista_id');
-            $table->timestamp('fecha');
+            $table->string('fecha');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('pista_id')->references('id')->on('pistas')->onDelete('cascade');
