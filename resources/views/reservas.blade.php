@@ -17,11 +17,15 @@
             <td>Hoy</td>
             @for($j=0; $j < 3; $j++)
                 <td>
-                    <form action="{{url('/reservaPista/' . $pista->id )}}" method="POST"
-                          style="display:inline"> @csrf
-                        <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
-                        <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
-                    </form>
+                    @if(in_array($fecha, $fechas))
+                        <div class="alert alert-danger">Ocupada</div>
+                    @else
+                        <form action="{{url('/reservas/' . $pista->id )}}" method="POST"
+                              style="display:inline"> @csrf
+                            <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
+                            <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
+                        </form>
+                    @endif
                 </td>
                 <div hidden>{{$fecha+=60*60*2}}</div>
             @endfor
@@ -31,11 +35,15 @@
             <td>Mañana</td>
             @for($j=0; $j < 3; $j++)
                 <td>
-                    <form action="{{url('/reservaPista/' . $pista->id )}}" method="POST"
-                          style="display:inline"> @csrf
-                        <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
-                        <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
-                    </form>
+                    @if(in_array($fecha, $fechas))
+                        <div class="alert alert-danger">Ocupada</div>
+                    @else
+                        <form action="{{url('/reservas/' . $pista->id )}}" method="POST"
+                              style="display:inline"> @csrf
+                            <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
+                            <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
+                        </form>
+                    @endif
                 </td>
                 <div hidden>{{$fecha+=60*60*2}}</div>
             @endfor
@@ -46,11 +54,15 @@
             @for($j=0; $j < 3; $j++)
                 <td>
                     {{--date('H:i d/m/Y', $fecha)--}}
-                    <form action="{{url('/reservaPista/' . $pista->id )}}" method="POST"
-                          style="display:inline"> @csrf
-                        <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
-                        <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
-                    </form>
+                    @if(in_array($fecha, $fechas))
+                        <div class="alert alert-danger">Ocupada</div>
+                    @else
+                        <form action="{{url('/reservas/' . $pista->id )}}" method="POST"
+                              style="display:inline"> @csrf
+                            <input type="text" name="fecha" id="fecha" value="{{$fecha}}" hidden>
+                            <button type="submit" class="btn btn-success" style="display:inline">Reservar</button>
+                        </form>
+                    @endif
                 </td>
                 <div hidden>{{$fecha+=60*60*2}}</div>
             @endfor

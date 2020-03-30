@@ -31,10 +31,9 @@ class PistasController extends Controller
         if ($request->ajax()) {
             $query = $request->get('query');
             if ($query != '') {
-                $data = DB::table('pistas')
-                    ->where('lugar', 'like', '%' . $query . '%')->get();
+                $data = Pista::where('lugar', 'like', '%' . $query . '%')->get();
             } else {
-                $data = DB::table('pistas')->get();
+                $data = Pista::get();
             }
             $total_row = $data->count();
             if ($total_row > 0) {
