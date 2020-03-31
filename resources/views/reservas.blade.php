@@ -30,7 +30,7 @@
                 <div hidden>{{$fecha+=60*60*2}}</div>
             @endfor
         </tr>
-        <div hidden>{{$fecha+=60*60*17}}</div>
+        <div hidden>{{$fecha+=60*60*18}}</div>
         <tr>
             <td>Mañana</td>
             @for($j=0; $j < 3; $j++)

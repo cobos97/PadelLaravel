@@ -51,3 +51,7 @@ Route::get('/pista/{id}', 'PistasController@getPista')->name('pista')->middlewar
 Route::get('/reservas/{id}', 'ReservasController@index')->name('reservas')->middleware('verified');
 Route::post('/reservas/{id}', 'ReservasController@reservar')->name('reservar')->middleware('verified');
 
+Route::get('/admin/reservas', 'ReservasController@getReservas')->name('reservasAdmin')->middleware('es_admin');
+Route::delete('/deleteReserva/{id}', 'ReservasController@deleteReserva')->middleware('es_admin');
+Route::post('/admin/reservas', 'ReservasController@filtroReservas')->middleware('es_admin');
+
