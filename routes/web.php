@@ -55,3 +55,6 @@ Route::get('/admin/reservas', 'ReservasController@getReservas')->name('reservasA
 Route::delete('/deleteReserva/{id}', 'ReservasController@deleteReserva')->middleware('es_admin');
 Route::post('/admin/reservas', 'ReservasController@filtroReservas')->middleware('es_admin');
 
+
+Route::get('/pdf', 'PdfController@imprimir')->name('imprimir');
+
