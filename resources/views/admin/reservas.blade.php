@@ -6,6 +6,20 @@
 
     <h1>Control de reservas</h1>
 
+    Generar un pdf con las reservas del dia
+    <form class="form" action="{{url('/reservasdia')}}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="pista" class="sr-only">Pista</label>
+            <select class="form-control" id="pista" name="pista" required>
+                @foreach($pistas as $pista)
+                    <option value="{{$pista->id}}">{{$pista->lugar}}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" name="filtrar" value="usuario" class="btn btn-success mb-2">Generar</button>
+    </form>
+
     <h2>Filtra las reservas</h2>
     <form class="form" action="" method="post" enctype="multipart/form-data">
         @csrf
