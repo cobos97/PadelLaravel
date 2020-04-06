@@ -55,10 +55,40 @@
                 <img src="{{asset($pista->foto)}}" style="height:200px"/>
                 <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}} </h4>
                 <a href="{{ url('/editarPista/' . $pista->id ) }}" class="btn btn-success">Editar</a>
+                {{--
                 <form action="{{url('/deletePista/' . $pista->id )}}" method="POST"
                       style="display:inline"> {{ method_field('DELETE') }} @csrf
                     <button type="submit" class="btn btn-danger" style="display:inline">Eliminar</button>
                 </form>
+                --}}
+                <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#delexampleModal" onclick="event.preventDefault();
+                        document.getElementById('formDel').setAttribute('action', '{{url('/deletePista/' . $pista->id )}}');">
+                    Eliminar
+                </button>
             </div> @endforeach</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="delexampleModal" tabindex="-1" role="dialog" aria-labelledby="delexampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro que quieres eliminar esta pista?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Al borrar la pista se borrarán todas sus reservas y mensajes también.<br>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <form id="formDel" action="{{url('/deletePista/' . $pista->id )}}" method="POST"
+                          style="display:inline"> {{ method_field('DELETE') }} @csrf
+                        <button type="submit" class="btn btn-danger" style="display:inline">Borrar pista</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

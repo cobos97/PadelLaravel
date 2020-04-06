@@ -54,24 +54,24 @@ class DatabaseSeeder extends Seeder
         $pista->lugar = 'Moriles';
         $pista->foto = 'imagenes/moriles.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '123';
-        $pista->coorY = '123';
+        $pista->coorX = '37.439475';
+        $pista->coorY = '-4.604238';
         $pista->save();
 
         $pista = new Pista();
         $pista->lugar = 'FernanNuñez';
         $pista->foto = 'imagenes/fernannunez.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '37.44';
-        $pista->coorY = '-4.60';
+        $pista->coorX = '37.665880';
+        $pista->coorY = '-4.727652';
         $pista->save();
 
         $pista = new Pista();
         $pista->lugar = 'Lucena';
         $pista->foto = 'imagenes/lucena.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '37.44';
-        $pista->coorY = '-4.60';
+        $pista->coorX = '37.407894';
+        $pista->coorY = '-4.473263';
         $pista->save();
 
     }

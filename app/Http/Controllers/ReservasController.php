@@ -104,6 +104,17 @@ class ReservasController extends Controller
         return redirect(route('reservasAdmin'));
     }
 
+    public function deleteReservaUser($id)
+    {
+        $reserva = Reserva::findOrFail($id);
+        $user_id = $reserva->user_id;
+        $reserva->delete();
+
+        flash('La reserva se ha cancelado correctamente')->success();
+
+        return redirect(url('/user/' . $user_id));
+    }
+
     public function filtroReservas(Request $request)
     {
         $arrayPistas = Pista::all();

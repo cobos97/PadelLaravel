@@ -23,6 +23,9 @@ class MensajesController extends Controller
     }
 
     public function enviar(Request $request, $id){
+
+        date_default_timezone_set('Europe/Madrid');
+
         $mensaje = new Mensaje();
         $mensaje->contenido = $request->input('contenido');
         //$mensaje->pista_id = $request->input('pista');

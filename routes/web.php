@@ -53,8 +53,11 @@ Route::post('/reservas/{id}', 'ReservasController@reservar')->name('reservar')->
 
 Route::get('/admin/reservas', 'ReservasController@getReservas')->name('reservasAdmin')->middleware('es_admin');
 Route::delete('/deleteReserva/{id}', 'ReservasController@deleteReserva')->middleware('es_admin');
+Route::delete('/deleteReservaUser/{id}', 'ReservasController@deleteReservaUser')->middleware('verified');
 Route::post('/admin/reservas', 'ReservasController@filtroReservas')->middleware('es_admin');
 
+Route::get('/user/{id}', 'UserController@index')->middleware('verified');
+Route::put('/user/{id}', 'UserController@putEditar')->middleware('verified');
 
 Route::post('/reservasdia', 'PdfController@imprimir')->name('imprimir')->middleware('es_admin');
 
