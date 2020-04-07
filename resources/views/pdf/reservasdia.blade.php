@@ -13,6 +13,15 @@
 </head>
 <body>
 
+
+<img style="width: 100px" src="{{asset('imagenes/padel.png')}}">
+<strong style="font-size: 40px">PADELSUBBETICA</strong>
+<br>
+
+Entra en www.padelsubbetica.duckdns.org para hacer tus reservas de padel y encontrar nuevas personas para
+jugar.
+
+
 <h1>Reservas del dia en {{$reservas[0]->pista->lugar}}</h1>
 
 
@@ -34,7 +43,8 @@
 <ul style="font-size: 30px">
     <li>Por favor, firmar en el recuadro que te corresponda.</li>
     <li>La persona que firma se hace responsable de los posibles
-        desperfectos ocasionados en la pista.</li>
+        desperfectos ocasionados en la pista.
+    </li>
     <li>En caso de estar utilizando la pista sin haber firmado antes se penalizará al responsable de la reserva.</li>
 </ul>
 

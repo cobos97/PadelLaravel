@@ -49,27 +49,24 @@ class ReservasController extends Controller
 
     public function reservar($id, Request $request)
     {
-
-        $reserva = new Reserva();
-        $reserva->user_id = Auth()->user()->id;
-        $reserva->pista_id = $id;
-        $reserva->fecha = $request->input('fecha');
-        $reserva->save();
-
-        flash('Pista reservada con exito')->success();
-
-        $pista = Pista::findOrFail($id);
         date_default_timezone_set('Europe/Madrid');
-        $fecha = strtotime('5 pm');
-        $fechas = Reserva::where('fecha', '>', strtotime('9 am'))
-            ->where('pista_id', '=', $id)
-            ->pluck('fecha')->toArray();
-        /*
-        return view('reservas')
-            ->with('pista', $pista)
-            ->with('fecha', $fecha)
-            ->with('fechas', $fechas);
-        */
+
+        $reserva = Reserva::where('fecha', '>', $request->input('fecha')-36000)
+            ->where('fecha', '<', $request->input('fecha')+36000)
+            ->where('user_id', '=', Auth()->user()->id)
+            ->get();
+
+        if (count($reserva)>0){
+            flash('No puedes reservar mas de una pista en un mismo día')->error();
+        }else{
+            $reserva = new Reserva();
+            $reserva->user_id = Auth()->user()->id;
+            $reserva->pista_id = $id;
+            $reserva->fecha = $request->input('fecha');
+            $reserva->save();
+
+            flash('Pista reservada con exito')->success();
+        }
 
         return redirect(route('reservas', $id));
 
