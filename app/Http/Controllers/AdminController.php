@@ -67,6 +67,10 @@ class AdminController extends Controller
 
         $pista = new Pista();
         $pista->lugar = $request->input('lugar');
+        $pista->direccion = $request->input('direccion');
+        if ($request->input('nPista')) {
+            $pista->nPista = $request->input('nPista');
+        }
         $pista->descripcion = $request->input('descripcion');
         $pista->coorx = $request->input('coorx');
         $pista->coory = $request->input('coory');
@@ -85,8 +89,10 @@ class AdminController extends Controller
     {
         $pista = Pista::findOrFail($id);
 
+        /*
         $pista->lugar = '_' . $pista->lugar;
         $pista->save();
+        */
 
         return view('editar.pista')
             ->with('pista', $pista);

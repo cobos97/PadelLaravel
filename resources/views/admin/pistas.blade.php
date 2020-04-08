@@ -19,6 +19,18 @@
             @enderror
         </div>
         <div class="form-group">
+            <label for="direccion" class="sr-only">Direccion</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion"
+                   value="{{ old('direccion') }}">
+            @error('direccion')
+            <b>{{$message}}</b>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="nPista" class="sr-only">Numero de pista</label>
+            <input type="text" class="form-control" id="nPista" name="nPista" placeholder="Número de pista">
+        </div>
+        <div class="form-group">
             <label for="foto" class="sr-only">Foto</label>
             <input type="file" class="form-control" id="foto" name="foto" value="{{ old('foto') }}" required>
             @error('foto')
@@ -53,7 +65,7 @@
         @foreach( $arrayPistas as $pista)
             <div class="col-md-5 col-xl-3 text-center m-3">
                 <img src="{{asset($pista->foto)}}" style="height:200px"/>
-                <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}} </h4>
+                <h4 style="min-height:45px;margin:5px 0 10px 0"> {{$pista->lugar}}<br>{{$pista->direccion}} - {{$pista->nPista}} </h4>
                 <a href="{{ url('/editarPista/' . $pista->id ) }}" class="btn btn-success">Editar</a>
                 {{--
                 <form action="{{url('/deletePista/' . $pista->id )}}" method="POST"

@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->lugar = 'Moriles';
+        $pista->direccion = 'Avenida del Deporte';
         $pista->foto = 'imagenes/moriles.jpg';
         $pista->descripcion = 'descripcion';
         $pista->coorX = '37.439475';
@@ -60,6 +61,7 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->lugar = 'FernanNuñez';
+        $pista->direccion = 'Carretera la Rambla';
         $pista->foto = 'imagenes/fernannunez.jpg';
         $pista->descripcion = 'descripcion';
         $pista->coorX = '37.665880';
@@ -68,6 +70,17 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->lugar = 'Lucena';
+        $pista->direccion = 'Calle del Deporte';
+        $pista->foto = 'imagenes/lucena.jpg';
+        $pista->descripcion = 'descripcion';
+        $pista->coorX = '37.407894';
+        $pista->coorY = '-4.473263';
+        $pista->save();
+
+        $pista = new Pista();
+        $pista->lugar = 'Lucena';
+        $pista->direccion = 'Calle del Deporte';
+        $pista->nPista = '2';
         $pista->foto = 'imagenes/lucena.jpg';
         $pista->descripcion = 'descripcion';
         $pista->coorX = '37.407894';

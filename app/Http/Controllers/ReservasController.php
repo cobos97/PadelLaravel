@@ -57,7 +57,7 @@ class ReservasController extends Controller
             ->get();
 
         if (count($reserva)>0){
-            flash('No puedes reservar mas de una pista en un mismo día')->error();
+            flash("No puedes reservar mas de una pista en un mismo día. Comprueba tus reservas en mi cuenta.")->error();
         }else{
             $reserva = new Reserva();
             $reserva->user_id = Auth()->user()->id;
@@ -123,12 +123,12 @@ class ReservasController extends Controller
 
         if ($request->input('pista') != null) {
             foreach ($users as $user) {
-                $aux = Reserva::where('user_id', $user->id)->where('pista_id', $request->input('pista') * 1)->get();
+                $aux = Reserva::where('user_id', $user->id)->where('pista_id', $request->input('pista') * 1)->where('fecha', '>', strtotime('9 am'))->get();
                 $reservas = $reservas->merge($aux);
             }
         } else {
             foreach ($users as $user) {
-                $aux = Reserva::where('user_id', $user->id)->get();
+                $aux = Reserva::where('user_id', $user->id)->where('fecha', '>', strtotime('9 am'))->get();
                 $reservas = $reservas->merge($aux);
             }
         }

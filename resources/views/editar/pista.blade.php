@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <a href="{{route('pistasAdmin')}}" class="enlace">Volver</a>
+
     <h3>Editar pista</h3>
 
     <form class="form" action="" method="post" enctype="multipart/form-data">
@@ -8,10 +11,21 @@
         {{method_field('PUT')}}
         <div class="form-group">
             <label for="lugar" class="sr-only">Lugar</label>
-            <input type="text" name="lugar" id="lugar" class="form-control" value="{{substr($pista->lugar, 1)}}">
+            <input type="text" name="lugar" id="lugar" class="form-control" value="{{$pista->lugar}}">
             @error('lugar')
             <b>{{$message}}</b>
             @enderror
+        </div>
+        <div class="form-group">
+            <label for="direccion" class="sr-only">Direccion</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" value="{{$pista->direccion}}">
+            @error('direccion')
+            <b>{{$message}}</b>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="nPista" class="sr-only">Numero de pista</label>
+            <input type="text" class="form-control" id="nPista" name="nPista" value="{{$pista->nPista}}">
         </div>
         <div class="form-group">
             <label for="foto" class="sr-only">Foto</label>

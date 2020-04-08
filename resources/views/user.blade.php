@@ -35,7 +35,7 @@
             @foreach($reservas as $reserva)
                 <tr>
                     <th scope="row">{{$reserva->user->name}}</th>
-                    <td>{{$reserva->pista->lugar}}</td>
+                    <td>{{$reserva->pista->lugar}}, {{$reserva->pista->direccion}}-{{$reserva->pista->nPista}}</td>
                     <td>{{date('H:i d/m/Y', $reserva->fecha)}}</td>
                     <td>
                         {{--

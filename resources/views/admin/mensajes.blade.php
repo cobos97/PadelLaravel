@@ -42,7 +42,7 @@
             <tr>
                 <th scope="row">{{$mensaje->user->name}}</th>
                 <td>{{$mensaje->contenido}}</td>
-                <td>{{$mensaje->pista->lugar}}</td>
+                <td>{{$mensaje->pista->lugar}}, {{$mensaje->pista->direccion}}-{{$mensaje->pista->nPista}}</td>
                 <td>
                     <form action="{{url('/deleteMensaje/' . $mensaje->id )}}" method="POST"
                           style="display:inline"> {{ method_field('DELETE') }} @csrf

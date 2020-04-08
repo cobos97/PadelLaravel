@@ -25,7 +25,8 @@ class ValidationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'lugar' => 'required|min:5|unique:pistas',
+            'lugar' => 'required|min:5',
+            'direccion' => 'required|min:5',
             'descripcion' => 'required|max:191',
             'foto' => 'mimes:jpeg,png,jpg'
         ];
@@ -39,6 +40,8 @@ class ValidationFormRequest extends FormRequest
         return [
             'lugar.required'=>'Por favor, introduce un lugar para la pista',
             'lugar.min'=>'EL campo lugar debe de ser de al menos 5 caracteres',
+            'direccion.required'=>'Por favor, introduce una direccion para la pista',
+            'direccion.min'=>'EL campo direccion debe de ser de al menos 5 caracteres',
             'descripcion.max'=>'EL campo descripcion debe de ser como maximo 191 caracteres',
             'foto.mimes'=>'Solo se aceptan archivos jpeg, jpg o png'
         ];

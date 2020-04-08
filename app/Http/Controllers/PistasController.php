@@ -31,7 +31,9 @@ class PistasController extends Controller
         if ($request->ajax()) {
             $query = $request->get('query');
             if ($query != '') {
-                $data = Pista::where('lugar', 'like', '%' . $query . '%')->get();
+                $data = Pista::where('lugar', 'like', '%' . $query . '%')
+                    ->orWhere('direccion', 'like', '%' . $query . '%')
+                    ->get();
             } else {
                 $data = Pista::get();
             }
@@ -41,7 +43,7 @@ class PistasController extends Controller
                 foreach ($data as $row) {
                     $output .= "<div class=\"col-md-5 col-xl-3 text-center m-3\">
                                 <img src=\"" . $row->foto . "\" style=\"height:200px\"/>
-                                <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "</h4>
+                                <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "<br>" . $row->direccion . " - " . $row->nPista . "</h4>
                                 <a href=\"/pista/" . $row->id . "\" class=\"btn btn-primary\">Ver</a>
                                 <a href=\"/mensajes/" . $row->id . "\" class=\"btn btn-success\">Chat</a>
                                 <a href=\"/reservas/" . $row->id . "\" class=\"btn btn-warning\">Reservas</a>
