@@ -23,6 +23,9 @@
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin=""/>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -31,6 +34,7 @@
 <style>
     #mapid {
         height: 400px;
+        z-index: 0;
     }
 </style>
 
@@ -107,8 +111,8 @@
         </div>
     </nav>
 
-    <main class="py-4">
-        <div class="container" style="margin-top: 50px">
+    <main class="py-4 main">
+        <div class="container" style="margin-top: 50px;">
             @include('flash::message')
 
             @yield('content')

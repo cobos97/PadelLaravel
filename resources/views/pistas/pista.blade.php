@@ -9,19 +9,30 @@
     <div id="y" hidden>{{$pista->coorY}}</div>
 
     <h1>{{$pista->lugar}}, {{$pista->direccion}} - {{$pista->nPista}}</h1>
-    <div class="row">
-        <div class="col">
-            <img src="{{asset($pista->foto)}}" style="height:350px"/>
+
+
+    <a href="{{ url('/mensajes/' . $pista->id ) }}" class="btn btn-success">Chat
+        <i class="fas fa-comments"></i></a>
+
+    <a href="{{ url('/reservas/' . $pista->id ) }}" class="btn btn-warning">Reservas
+        <i class="fas fa-save"></i></a>
+
+
+
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md">
+            <img src="{{asset($pista->foto)}}" style="width:100%"/>
         </div>
-        <div class="col">
+        <div class="col-md">
             <p>{{$pista->descripcion}}</p>
         </div>
     </div>
-{{--
-    <div style="height: 500px; background-color: salmon"></div>
-    <div style="height: 500px; background-color: greenyellow"></div>
-    <div style="height: 500px; background-color: deeppink"></div>
---}}
+    {{--
+        <div style="height: 500px; background-color: salmon"></div>
+        <div style="height: 500px; background-color: greenyellow"></div>
+        <div style="height: 500px; background-color: deeppink"></div>
+    --}}
 
 @endsection
 

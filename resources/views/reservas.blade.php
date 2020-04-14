@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <a href="{{route('pistas')}}" class="enlace">Volver</a>
+    <a href="{{url('/pista/' . $pista->id)}}" class="enlace">Volver</a>
 
     <table class="table table-bordered">
         <thead>

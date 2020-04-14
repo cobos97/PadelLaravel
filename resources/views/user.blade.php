@@ -73,10 +73,12 @@
                 </div>
                 <div class="modal-body">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <form id="formDel" action="{{url('/deleteReservaUser/' . $reserva->id )}}" method="POST"
-                          style="display:inline"> {{ method_field('DELETE') }} @csrf
-                        <button type="submit" class="btn btn-danger" style="display:inline">Anular reserva</button>
-                    </form>
+                    @if(count($reservas)!=0)
+                        <form id="formDel" action="{{url('/deleteReservaUser/' . $reserva->id )}}" method="POST"
+                              style="display:inline"> {{ method_field('DELETE') }} @csrf
+                            <button type="submit" class="btn btn-danger" style="display:inline">Anular reserva</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
