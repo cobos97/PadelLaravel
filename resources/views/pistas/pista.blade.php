@@ -10,6 +10,8 @@
 
     <h1>{{$pista->lugar}}, {{$pista->direccion}} - {{$pista->nPista}}</h1>
 
+    <p>{{$pista->descripcion}}</p>
+
 
     <a href="{{ url('/mensajes/' . $pista->id ) }}" class="btn btn-success">Chat
         <i class="fas fa-comments"></i></a>
@@ -20,14 +22,7 @@
 
 
 
-    <div class="row" style="margin-top: 15px">
-        <div class="col-md">
-            <img src="{{asset($pista->foto)}}" style="width:100%"/>
-        </div>
-        <div class="col-md">
-            <p>{{$pista->descripcion}}</p>
-        </div>
-    </div>
+
     {{--
         <div style="height: 500px; background-color: salmon"></div>
         <div style="height: 500px; background-color: greenyellow"></div>

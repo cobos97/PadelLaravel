@@ -11,21 +11,21 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a href="{{route('pistas')}}"><img class="imgcar1" style="width: 100%"
-                                                   src="{{asset('imagenes/bg_padel.jpg')}}" alt="..."></a>
+                                                   src="{{asset('imagenes/carrusel1.jpg')}}" alt="..."></a>
                 <div class="carousel-caption">
                     <h5>Pistas</h5>
                     <p class="d-none d-md-block">Visita nuestro listado de pistas</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="imgcar2" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
+                <img class="imgcar2" style="width: 100%" src="{{asset('imagenes/carrusel2.jpg')}}" alt="...">
                 <div class="carousel-caption">
                     <h5>No se</h5>
                     <p class=" d-none d-md-block">...</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="imgcar3" style="width: 100%" src="{{asset('imagenes/bg_padel.jpg')}}" alt="...">
+                <img class="imgcar3" style="width: 100%" src="{{asset('imagenes/carrusel3.jpeg')}}" alt="...">
                 <div class="carousel-caption">
                     <h5>Contacto</h5>
                     <p class=" d-none d-md-block">...</p>
@@ -97,8 +97,8 @@
 
         if (isMobile()) {
             $('.imgcar1').attr('src', "{{asset('imagenes/chica.jpg')}}");
-            $('.imgcar2').attr('src', "{{asset('imagenes/chica.jpg')}}");
-            $('.imgcar3').attr('src', "{{asset('imagenes/bg_pelota.jpg')}}");
+            $('.imgcar2').attr('src', "{{asset('imagenes/bg_pelota.jpg')}}");
+            $('.imgcar3').attr('src', "{{asset('imagenes/c_chico_3.jpg')}}");
 
         }
 

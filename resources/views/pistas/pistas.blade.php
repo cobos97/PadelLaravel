@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Zona de pistas</h1>
+    {{--<h1>Zona de pistas</h1>--}}
 
     <input type="text" name="search" id="search" class="form-control" placeholder="Busca una pista por ciudad o dirección">
 
-    <h3>Listado de pistas</h3>
+    {{--<h3>Listado de pistas</h3>--}}
     <div class="row" id="pistas">
 
     </div>

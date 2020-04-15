@@ -117,9 +117,16 @@
 
             @yield('content')
 
-            <h2 style="margin-top: 50px">Localización</h2>
 
-            <div id="mapid"></div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md">
+                    <img src="{{asset($pista->foto)}}" style="width:100%; margin-bottom: 20px;"/>
+                </div>
+                <div class="col-md">
+                    <div id="mapid"></div>
+                </div>
+            </div>
+
 
         </div>
     </main>
