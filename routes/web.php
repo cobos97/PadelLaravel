@@ -24,6 +24,9 @@ Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_adm
 Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
 Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
 
+Route::get('/admin/complejos', 'AdminController@indexComplejos')->name('complejosAdmin')->middleware('es_admin');
+Route::delete('/deleteComplejo/{id}', 'AdminController@deleteComplejo')->middleware('es_admin');
+
 Route::get('/admin/mensajes', 'AdminController@indexMensajes')->name('mensajesAdmin')->middleware('es_admin');
 Route::post('/admin/mensajes', 'AdminController@filtroMensajes')->middleware('es_admin');
 Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
@@ -44,9 +47,10 @@ Route::post('/contacta', 'ContactaController@enviarContacta');
 Route::get('/listaContactas', 'ContactaController@getContactas')->name('getContactas')->middleware('es_admin');
 Route::delete('/deleteContacta/{id}', 'ContactaController@deleteContacta')->middleware('es_admin');
 
-Route::get('/pistas', 'PistasController@index')->name('pistas')->middleware('verified');
-Route::get('/pistas/action', 'PistasController@action')->name('pistas.action')->middleware('verified');
-Route::get('/pista/{id}', 'PistasController@getPista')->name('pista')->middleware('verified');
+Route::get('/complejos', 'PistasController@index')->name('complejos')->middleware('verified');
+Route::get('/complejos/action', 'PistasController@action')->name('complejos.action')->middleware('verified');
+Route::get('/complejo/{id}', 'PistasController@getPista')->name('complejo')->middleware('verified');
+Route::get('/pista/{id}', 'PistasController@getPistaConcreta')->name('pista')->middleware('verified');
 
 Route::get('/reservas/{id}', 'ReservasController@index')->name('reservas')->middleware('verified');
 Route::post('/reservas/{id}', 'ReservasController@reservar')->name('reservar')->middleware('verified');

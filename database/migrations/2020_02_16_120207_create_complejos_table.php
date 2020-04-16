@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePistasTable extends Migration
+class CreateComplejosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreatePistasTable extends Migration
      */
     public function up()
     {
-        Schema::create('pistas', function (Blueprint $table) {
+        Schema::create('complejos', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('complejo_id');
-
-            $table->string('nPista')->default('1');
+            $table->string('lugar');
+            $table->string('direccion');
             $table->string('foto');
             $table->string('descripcion');
-
+            $table->string('coorX');
+            $table->string('coorY');
 
             $table->timestamps();
-
-            $table->foreign('complejo_id')->references('id')->on('complejos')->onDelete('cascade');
-
         });
     }
 
@@ -37,6 +34,6 @@ class CreatePistasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pistas');
+        Schema::dropIfExists('complejos');
     }
 }

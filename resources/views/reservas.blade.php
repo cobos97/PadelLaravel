@@ -4,6 +4,8 @@
 
     <a href="{{url('/pista/' . $pista->id)}}" class="enlace">Volver</a>
 
+    <h1>{{$pista->complejo->lugar}} - {{$pista->complejo->direccion}} - Pista Nª {{$pista->nPista}}</h1>
+
     <table class="table table-bordered">
         <thead>
         <tr>

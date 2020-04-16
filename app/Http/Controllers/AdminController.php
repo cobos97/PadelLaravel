@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ValidationFormRequest;
 use App\Mensaje;
 use App\Pista;
+use App\Complejo;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,19 @@ class AdminController extends Controller
             ->with('arrayPistas', $arrayPistas);
     }
 
+    public function indexComplejos()
+    {
+
+        $complejos = Complejo::all();
+        return view('admin.complejos')
+            ->with('complejos', $complejos);
+
+    }
+
     public function indexMensajes()
     {
         $mensajes = Mensaje::all();
-        $arrayPistas = Pista::all();
+        $arrayPistas = Complejo::all();
 
         return view('admin.mensajes')
             ->with('mensajes', $mensajes)
@@ -135,6 +145,19 @@ class AdminController extends Controller
         return redirect('/admin/pistas');
 
     }
+
+    public function deleteComplejo($id)
+    {
+
+        $complejo = Complejo::findOrFail($id);
+        $complejo->delete();
+
+        flash('Complejo borrado con éxito')->error();
+
+        return redirect('/admin/complejos');
+
+    }
+
 
     public function deleteMensaje($id)
     {

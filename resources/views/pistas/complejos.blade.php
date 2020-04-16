@@ -23,7 +23,7 @@
 
             function fetch_pista_data(query = '') {
 
-                $.get("{{route('pistas.action')}}", {query: query}, function (data) {
+                $.get("{{route('complejos.action')}}", {query: query}, function (data) {
                     console.log(JSON.parse(data));
                     $('#pistas').html(JSON.parse(data));
                 })

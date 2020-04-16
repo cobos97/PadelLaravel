@@ -13,7 +13,7 @@
             <label for="pista" class="sr-only">Pista</label>
             <select class="form-control" id="pista" name="pista" required>
                 @foreach($pistas as $pista)
-                    <option value="{{$pista->id}}">{{$pista->lugar . ', ' . $pista->direccion . '-' . $pista->nPista}}</option>
+                    <option value="{{$pista->id}}">{{$pista->complejo->lugar . ', ' . $pista->complejo->direccion . '-' . $pista->nPista}}</option>
                 @endforeach
             </select>
         </div>
@@ -32,7 +32,7 @@
             <select class="form-control" id="pista" name="pista">
                 <option value="">Seleccione una pista si lo desea</option>
                 @foreach($pistas as $pista)
-                    <option value="{{$pista->id}}">{{$pista->lugar . ', ' . $pista->direccion . '-' . $pista->nPista}}</option>
+                    <option value="{{$pista->id}}">{{$pista->complejo->lugar . ', ' . $pista->complejo->direccion . '-' . $pista->nPista}}</option>
                 @endforeach
             </select>
         </div>
@@ -55,7 +55,7 @@
             @foreach($reservas as $reserva)
                 <tr>
                     <th scope="row">{{$reserva->user->name}}</th>
-                    <td>{{$reserva->pista->lugar . ', ' . $reserva->pista->direccion . '-' . $reserva->pista->nPista}}</td>
+                    <td>{{$reserva->pista->complejo->lugar . ', ' . $reserva->pista->complejo->direccion . '-' . $reserva->pista->nPista}}</td>
                     <td>{{date('H:i d/m/Y', $reserva->fecha)}}</td>
                     <td>
                         <form action="{{url('/deleteReserva/' . $reserva->id )}}" method="POST"

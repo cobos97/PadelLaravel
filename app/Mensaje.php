@@ -11,8 +11,8 @@ class Mensaje extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function pista()
+    public function complejo()
     {
-        return $this->belongsTo('App\Pista');
+        return $this->belongsTo('App\Complejo');
     }
 }

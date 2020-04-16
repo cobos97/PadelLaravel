@@ -18,7 +18,7 @@
             <select class="form-control" id="pista" name="pista">
                 <option value="">Seleccione una pista si lo desea</option>
                 @foreach($pistas as $pista)
-                    <option value="{{$pista->id}}">{{$pista->lugar}}</option>
+                    <option value="{{$pista->id}}">{{$pista->lugar}}, {{$pista->direccion}}</option>
                 @endforeach
             </select>
         </div>
@@ -30,7 +30,7 @@
         <tr>
             <th scope="col">Emisor</th>
             <th scope="col">Contenido</th>
-            <th scope="col">Lugar</th>
+            <th scope="col">Complejo</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -42,7 +42,7 @@
             <tr>
                 <th scope="row">{{$mensaje->user->name}}</th>
                 <td>{{$mensaje->contenido}}</td>
-                <td>{{$mensaje->pista->lugar}}, {{$mensaje->pista->direccion}}-{{$mensaje->pista->nPista}}</td>
+                <td>{{$mensaje->complejo->lugar}}, {{$mensaje->complejo->direccion}}</td>
                 <td>
                     <form action="{{url('/deleteMensaje/' . $mensaje->id )}}" method="POST"
                           style="display:inline"> {{ method_field('DELETE') }} @csrf

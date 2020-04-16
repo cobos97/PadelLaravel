@@ -50,7 +50,7 @@
                     </li>
                     --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('pistas')}}">Pistas</a>
+                        <a class="nav-link" href="{{route('complejos')}}">Complejos</a>
                     </li>
                     @if(Auth()->user())
                         @if(Auth()->user()->rol == 'admin')

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Complejo;
 use App\Pista;
 use App\Mensaje;
 use App\Contacta;
@@ -18,12 +19,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         self::seedUsers();
+        self::complejos();
         self::seedPistas();
         self::seedMensajes();
         self::seedContactas();
     }
 
-    private function seedUsers(){
+    private function seedUsers()
+    {
         DB::table('users')->delete();
 
         $usuario = new User();
@@ -47,90 +50,114 @@ class DatabaseSeeder extends Seeder
 
     }
 
-    private function seedPistas(){
+    private function complejos()
+    {
+        DB::table('complejos')->delete();
+
+        $complejo = new Complejo();
+        $complejo->lugar = 'Moriles';
+        $complejo->direccion = 'Avenida del Deporte';
+        $complejo->foto = 'imagenes/moriles.jpg';
+        $complejo->descripcion = 'descripcion';
+        $complejo->coorX = '37.439475';
+        $complejo->coorY = '-4.604238';
+        $complejo->save();
+
+        $complejo = new Complejo();
+        $complejo->lugar = 'FernanNuñez';
+        $complejo->direccion = 'Carretera la Rambla';
+        $complejo->foto = 'imagenes/fernannunez.jpg';
+        $complejo->descripcion = 'descripcion';
+        $complejo->coorX = '37.665880';
+        $complejo->coorY = '-4.727652';
+        $complejo->save();
+
+        $complejo = new Complejo();
+        $complejo->lugar = 'Lucena';
+        $complejo->direccion = 'Calle del Deporte';
+        $complejo->foto = 'imagenes/lucena.jpg';
+        $complejo->descripcion = 'descripcion';
+        $complejo->coorX = '37.407894';
+        $complejo->coorY = '-4.473263';
+        $complejo->save();
+
+    }
+
+    private function seedPistas()
+    {
         DB::table('pistas')->delete();
 
         $pista = new Pista();
-        $pista->lugar = 'Moriles';
-        $pista->direccion = 'Avenida del Deporte';
+        $pista->complejo_id = 1;
         $pista->foto = 'imagenes/moriles.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '37.439475';
-        $pista->coorY = '-4.604238';
         $pista->save();
 
         $pista = new Pista();
-        $pista->lugar = 'FernanNuñez';
-        $pista->direccion = 'Carretera la Rambla';
+        $pista->complejo_id = 2;
         $pista->foto = 'imagenes/fernannunez.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '37.665880';
-        $pista->coorY = '-4.727652';
         $pista->save();
 
         $pista = new Pista();
-        $pista->lugar = 'Lucena';
-        $pista->direccion = 'Calle del Deporte';
+        $pista->complejo_id = 3;
         $pista->foto = 'imagenes/lucena.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '37.407894';
-        $pista->coorY = '-4.473263';
         $pista->save();
 
         $pista = new Pista();
-        $pista->lugar = 'Lucena';
-        $pista->direccion = 'Calle del Deporte';
+        $pista->complejo_id = 3;
         $pista->nPista = '2';
         $pista->foto = 'imagenes/lucena.jpg';
         $pista->descripcion = 'descripcion';
-        $pista->coorX = '37.407894';
-        $pista->coorY = '-4.473263';
         $pista->save();
 
     }
 
-    private function seedMensajes(){
+    private function seedMensajes()
+    {
         DB::table('mensajes')->delete();
 
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Primer mensaje de prueba';
         $mensaje->user_id = 1;
-        $mensaje->pista_id = 1;
+        $mensaje->complejo_id = 1;
         $mensaje->save();
 
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Primer mensaje de prueba';
         $mensaje->user_id = 2;
-        $mensaje->pista_id = 1;
+        $mensaje->complejo_id = 1;
         $mensaje->save();
 
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Segundo mensaje de prueba';
         $mensaje->user_id = 1;
-        $mensaje->pista_id = 2;
+        $mensaje->complejo_id = 2;
         $mensaje->save();
 
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Segundo mensaje de prueba';
         $mensaje->user_id = 2;
-        $mensaje->pista_id = 2;
+        $mensaje->complejo_id = 2;
         $mensaje->save();
 
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Tercer mensaje de prueba';
         $mensaje->user_id = 2;
-        $mensaje->pista_id = 3;
+        $mensaje->complejo_id = 3;
         $mensaje->save();
 
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Tercer mensaje de prueba';
         $mensaje->user_id = 2;
-        $mensaje->pista_id = 3;
+        $mensaje->complejo_id = 3;
         $mensaje->save();
 
     }
 
-    private function seedContactas(){
+    private function seedContactas()
+    {
 
         DB::table('contactas')->delete();
 

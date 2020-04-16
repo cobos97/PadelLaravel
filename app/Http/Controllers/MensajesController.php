@@ -13,7 +13,7 @@ class MensajesController extends Controller
     public function index($id)
     {
         //$pistas = Pista::all();
-        $mensajes = Mensaje::where('pista_id', $id)->orderBy('created_at', 'desc')->get();
+        $mensajes = Mensaje::where('complejo_id', $id)->orderBy('created_at', 'desc')->get();
         //::orderBy('created_at', 'desc')
 
 
@@ -29,7 +29,7 @@ class MensajesController extends Controller
         $mensaje = new Mensaje();
         $mensaje->contenido = $request->input('contenido');
         //$mensaje->pista_id = $request->input('pista');
-        $mensaje->pista_id = $id;
+        $mensaje->complejo_id = $id;
         $mensaje->user_id = Auth()->user()->id;
         $mensaje->save();
 

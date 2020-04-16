@@ -10,7 +10,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <a href="{{route('pistas')}}"><img class="imgcar1" style="width: 100%"
+                <a href="{{route('complejos')}}"><img class="imgcar1" style="width: 100%"
                                                    src="{{asset('imagenes/carrusel1.jpg')}}" alt="...">
                     <div class="carousel-caption">
                         <h5>Pistas</h5>
