@@ -93,6 +93,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{url('/user/' . Auth::user()->id )}}">Mi cuenta</a>
+
+                                <div class="dropdown-divider"></div>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -120,12 +124,14 @@
 
             <div class="row" style="margin-top: 15px">
                 <div class="col-md">
-                    <img src="{{asset($pista->foto)}}" style="width:100%; margin-bottom: 20px;"/>
+                    <img src="{{asset($complejo->foto)}}" style="width:100%; margin-bottom: 20px;"/>
                 </div>
                 <div class="col-md">
                     <div id="mapid"></div>
                 </div>
             </div>
+
+            @yield('content2')
 
 
         </div>

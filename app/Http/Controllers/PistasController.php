@@ -23,7 +23,7 @@ class PistasController extends Controller
         $listaPistas = Pista::where('complejo_id', '=', $id)->get();
 
         return view('pistas.complejo')
-            ->with('pista', $pista)
+            ->with('complejo', $pista)
             ->with('listaPistas', $listaPistas);
 
     }
@@ -55,7 +55,7 @@ class PistasController extends Controller
                 $output = '';
                 foreach ($data as $row) {
                     $output .= "<div class=\"col-md-5 col-xl-3 text-center m-3\">
-                                <a href=\"/complejo/" . $row->id . "\"><img src=\"" . $row->foto . "\" style=\"height:200px\"/></a>
+                                <a href=\"/complejo/" . $row->id . "\"><img src=\"" . $row->foto . "\" style=\"width: 100%; height:200px\"/></a>
                                 <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "<br>" . $row->direccion . "</h4>
                                 </div>
                                 ";

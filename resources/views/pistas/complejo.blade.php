@@ -5,18 +5,15 @@
     <a href="{{route('complejos')}}" class="enlace">Volver</a>
 
     {{--Coordenadas--}}
-    <div id="x" hidden>{{$pista->coorX}}</div>
-    <div id="y" hidden>{{$pista->coorY}}</div>
+    <div id="x" hidden>{{$complejo->coorX}}</div>
+    <div id="y" hidden>{{$complejo->coorY}}</div>
 
-    <h1>{{$pista->lugar}}, {{$pista->direccion}}
-        <a href="{{ url('/mensajes/' . $pista->id ) }}" class="btn btn-success">Chat
+    <h1>{{$complejo->lugar}}, {{$complejo->direccion}}
+        <a href="{{ url('/mensajes/' . $complejo->id ) }}" class="btn btn-success">Chat
             <i class="fas fa-comments"></i></a></h1>
 
-    @foreach($listaPistas as $p)
-        <a href="{{ url('/pista/' . $p->id)  }}">Pista Nª {{$p->nPista}}</a>
-    @endforeach
 
-    <p>{{$pista->descripcion}}</p>
+    <p>{{$complejo->descripcion}}</p>
 
 
 
@@ -34,6 +31,25 @@
         <div style="height: 500px; background-color: greenyellow"></div>
         <div style="height: 500px; background-color: deeppink"></div>
     --}}
+
+@endsection
+
+@section('content2')
+
+    <h2>Listado de pistas</h2>
+
+    @if(count($listaPistas)==0)
+        <div class="alert alert-danger">No hay pistas asociadas a este complejo</div>
+    @endif
+
+    <div class="row">
+        @foreach($listaPistas as $pista)
+
+            <div class="col-md-5 col-xl-3 text-center m-3">
+                <a href="{{ url('/pista/' . $pista->id)  }}"><img src="{{asset($pista->foto)}}"
+                                                              style="width: 100%; height:200px"/></a>
+                <h4>Pista Nª {{$pista->nPista}}</h4>
+            </div> @endforeach</div>
 
 @endsection
 

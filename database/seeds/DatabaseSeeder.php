@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
         $complejo = new Complejo();
         $complejo->lugar = 'Moriles';
         $complejo->direccion = 'Avenida del Deporte';
-        $complejo->foto = 'imagenes/moriles.jpg';
+        $complejo->foto = 'imagenes/moriles.png';
         $complejo->descripcion = 'descripcion';
         $complejo->coorX = '37.439475';
         $complejo->coorY = '-4.604238';
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         $complejo = new Complejo();
         $complejo->lugar = 'Lucena';
         $complejo->direccion = 'Calle del Deporte';
-        $complejo->foto = 'imagenes/lucena.jpg';
+        $complejo->foto = 'imagenes/lucena.png';
         $complejo->descripcion = 'descripcion';
         $complejo->coorX = '37.407894';
         $complejo->coorY = '-4.473263';
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->complejo_id = 2;
-        $pista->foto = 'imagenes/fernannunez.jpg';
+        $pista->foto = 'imagenes/fernannunezP.jpg';
         $pista->descripcion = 'descripcion';
         $pista->save();
 
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
         $pista = new Pista();
         $pista->complejo_id = 3;
         $pista->nPista = '2';
-        $pista->foto = 'imagenes/lucena.jpg';
+        $pista->foto = 'imagenes/lucenaP.jpg';
         $pista->descripcion = 'descripcion';
         $pista->save();
 

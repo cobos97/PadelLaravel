@@ -18,14 +18,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware('es_admin');
 
-Route::get('/admin/pistas', 'AdminController@indexPistas')->name('pistasAdmin')->middleware('es_admin');
-Route::post('/admin/pistas', 'AdminController@insertarPista')->name('insertarPista')->middleware('es_admin');
-Route::get('/editarPista/{id}', 'AdminController@getEditar')->middleware('es_admin');
-Route::put('/editarPista/{id}', 'AdminController@putEditar')->middleware('es_admin');
-Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
 
 Route::get('/admin/complejos', 'AdminController@indexComplejos')->name('complejosAdmin')->middleware('es_admin');
 Route::delete('/deleteComplejo/{id}', 'AdminController@deleteComplejo')->middleware('es_admin');
+
+Route::get('/admin/complejos/nuevocomplejo', 'AdminController@indexNuevoComplejo')->name('nuevocomplejo')->middleware('es_admin');
+Route::post('/admin/complejos/nuevocomplejo', 'AdminController@insertarComplejo')->middleware('es_admin');
+Route::get('/admin/complejo/{id}', 'AdminController@getComplejo')->name('getcomplejo')->middleware('es_admin');
+
+Route::get('/admin/complejo/{id}/nuevapista', 'AdminController@indexNuevaPista')->name('nuevapista')->middleware('es_admin');
+Route::post('/admin/complejo/{id}/nuevapista', 'AdminController@insertarPista')->middleware('es_admin');
+Route::delete('/deletePista/{id}', 'AdminController@deletePista')->middleware('es_admin');
+
+Route::get('/admin/editarcomplejo/{id}', 'AdminController@getEditarComplejo')->middleware('es_admin');
+Route::put('/admin/editarcomplejo/{id}', 'AdminController@putEditarComplejo')->middleware('es_admin');
+
+Route::get('/admin/editarpista/{id}', 'AdminController@getEditarPista')->middleware('es_admin');
+Route::put('/admin/editarpista/{id}', 'AdminController@putEditarPista')->middleware('es_admin');
 
 Route::get('/admin/mensajes', 'AdminController@indexMensajes')->name('mensajesAdmin')->middleware('es_admin');
 Route::post('/admin/mensajes', 'AdminController@filtroMensajes')->middleware('es_admin');

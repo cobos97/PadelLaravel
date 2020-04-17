@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidationFormRequest;
+use App\Http\Requests\ValidationFormRequestPista;
 use App\Mensaje;
 use App\Pista;
 use App\Complejo;
@@ -30,6 +31,35 @@ class AdminController extends Controller
         $complejos = Complejo::all();
         return view('admin.complejos')
             ->with('complejos', $complejos);
+
+    }
+
+    public function indexNuevoComplejo()
+    {
+
+        return view('admin.nuevocomplejo');
+
+    }
+
+    public function getComplejo($id)
+    {
+
+        $complejo = Complejo::findOrFail($id);
+        $pistas = Pista::where('complejo_id', '=', $id)->get();
+
+        return view('admin.complejo')
+            ->with('complejo', $complejo)
+            ->with('pistas', $pistas);
+
+    }
+
+    public function indexNuevaPista($id)
+    {
+
+        $complejo = Complejo::findOrFail($id);
+
+        return view('admin.nuevapista')
+            ->with('complejo', $complejo);
 
     }
 
@@ -70,20 +100,44 @@ class AdminController extends Controller
             ->with('pistas', $arrayPistas);
     }
 
-    public function insertarPista(ValidationFormRequest $request)
+    public function insertarComplejo(ValidationFormRequest $request)
+    {
+
+        $request->validated();
+
+        $complejo = new Complejo();
+        $complejo->lugar = $request->input('lugar');
+        $complejo->direccion = $request->input('direccion');
+        $complejo->descripcion = $request->input('descripcion');
+        $complejo->coorx = $request->input('coorx');
+        $complejo->coory = $request->input('coory');
+        $complejo->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
+        $complejo->save();
+
+        $request->file('foto')->move('imagenes', $request->file('foto')->getClientOriginalName());
+
+
+        flash('Complejo insertado con éxito')->success();
+
+        return redirect('/admin/complejos');
+
+
+    }
+
+    public function insertarPista(ValidationFormRequestPista $request)
     {
         $request->validated();
 
 
         $pista = new Pista();
-        $pista->lugar = $request->input('lugar');
-        $pista->direccion = $request->input('direccion');
-        if ($request->input('nPista')) {
-            $pista->nPista = $request->input('nPista');
-        }
+
+        $pista->complejo_id = $request->input('id_complejo');
+
+        $posiblesPistas = Pista::where('complejo_id', '=', $request->input('id_complejo'))->get();
+        $pista->nPista = count($posiblesPistas) + 1;
+
         $pista->descripcion = $request->input('descripcion');
-        $pista->coorx = $request->input('coorx');
-        $pista->coory = $request->input('coory');
+
         $pista->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
         $pista->save();
 
@@ -92,10 +146,50 @@ class AdminController extends Controller
 
         flash('Pista insertada con éxito')->success();
 
-        return redirect('/admin/pistas');
+        return redirect('/admin/complejo/' . $request->input('id_complejo'));
     }
 
-    public function getEditar($id)
+
+    public function getEditarComplejo($id)
+    {
+        $complejo = Complejo::findOrFail($id);
+
+        /*
+        $pista->lugar = '_' . $pista->lugar;
+        $pista->save();
+        */
+
+        return view('editar.complejo')
+            ->with('complejo', $complejo);
+    }
+
+    public function putEditarComplejo(ValidationFormRequest $request)
+    {
+
+        $request->validated();
+
+        $complejo = Complejo::findOrFail($request->input('complejo_id'));
+
+        $complejo->lugar = $request->input('lugar');
+        $complejo->direccion = $request->input('direccion');
+        $complejo->descripcion = $request->input('descripcion');
+        $complejo->coorx = $request->input('coorx');
+        $complejo->coory = $request->input('coory');
+
+        if ($request->file('foto')) {
+            $complejo->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move('imagenes', $request->file('foto')->getClientOriginalName());
+        }
+
+        $complejo->save();
+
+        flash('Complejo editado con éxito')->success();
+
+        return redirect('/admin/complejo/' . $request->input('complejo_id'));
+
+    }
+
+    public function getEditarPista($id)
     {
         $pista = Pista::findOrFail($id);
 
@@ -109,17 +203,16 @@ class AdminController extends Controller
     }
 
     //Preguntar con ValidatFormsREquest
-    public function putEditar(ValidationFormRequest $request, $id)
+    public function putEditarPista(ValidationFormRequestPista $request, $id)
     {
 
         $request->validated();
 
         $pista = Pista::findOrFail($id);
 
-        $pista->lugar = $request->input('lugar');
+        $pista->nPista = $request->input('nPista');
+
         $pista->descripcion = $request->input('descripcion');
-        $pista->coorx = $request->input('coorx');
-        $pista->coory = $request->input('coory');
 
         if ($request->file('foto')) {
             $pista->foto = 'imagenes/' . $request->file('foto')->getClientOriginalName();
@@ -130,7 +223,7 @@ class AdminController extends Controller
 
         flash('Pista edita con éxito')->success();
 
-        return redirect('/admin/pistas');
+        return redirect('/admin/complejo/' . $pista->complejo_id);
 
     }
 
@@ -138,11 +231,12 @@ class AdminController extends Controller
     {
 
         $pista = Pista::findOrFail($id);
+        $complejo = $pista->complejo_id;
         $pista->delete();
 
         flash('Pista borrada con éxito')->error();
 
-        return redirect('/admin/pistas');
+        return redirect('/admin/complejo/' . $complejo);
 
     }
 
