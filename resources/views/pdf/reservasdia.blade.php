@@ -22,8 +22,8 @@ Entra en www.padelsubbetica.duckdns.org para hacer tus reservas de padel y encon
 jugar.
 
 
-<h1>Reservas del dia en {{$reservas[0]->pista->lugar}}</h1>
-
+<h1>Reservas del dia en {{$reservas[0]->pista->complejo->lugar}}, {{$reservas[0]->pista->complejo->direccion}}</h1>
+<h2>Pista número {{$reservas[0]->pista->nPista}}</h2>
 
 <table class="table table-bordered">
     <tr>
