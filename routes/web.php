@@ -43,10 +43,13 @@ Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middlewar
 Route::delete('/deleteMensajeUser/{pista_id}/{id}', 'MensajesController@deleteMensaje');
 
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios')->middleware('es_admin');
+Route::post('/usuarios', 'UsuariosController@getFiltro')->middleware('es_admin');
 
 Route::get('/editarUsuario/{id}', 'UsuariosController@getEditar')->middleware('es_admin');
 Route::put('/editarUsuario/{id}', 'UsuariosController@putEditar')->middleware('es_admin');
 Route::delete('/deleteUsuario/{id}', 'UsuariosController@deleteUsuario')->middleware('es_admin');
+Route::put('/penalizarusuario/{id}', 'UsuariosController@putPenalizar')->middleware('es_admin');
+Route::put('/deletepenalizacion/{id}', 'UsuariosController@putDespenalizar')->middleware('es_admin');
 
 Route::get('/mensajes/{id}', 'MensajesController@index')->name('mensajes')->middleware('verified');
 Route::post('/mensajes/{id}', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified');

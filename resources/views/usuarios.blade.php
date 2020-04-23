@@ -4,15 +4,26 @@
     <a href="{{route('admin')}}" class="enlace">Volver</a>
     <h1>Control de usuarios</h1>
 
+    <h2>Filtra los usuarios</h2>
+    <form class="form" action="" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="nombre" class="sr-only">Correo</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Correo electrónico">
+        </div>
+        <button type="submit" name="filtrar" value="usuario" class="btn btn-success mb-2">Filtrar</button>
+    </form>
+
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Nombre</th>
             <th scope="col">Correo</th>
+            <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Edad</th>
             <th scope="col">Rol</th>
             <th scope="col">Verificado</th>
+            <th scope="col">Penalización</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -28,6 +39,24 @@
                 <td>{{$usuario->rol}}</td>
                 <td>{{$usuario->email_verified_at}}</td>
                 <td>
+                    @if($usuario->rol != 'admin')
+                        @if($usuario->penalizacion > time())
+                            <p>Hasta: {{date('H:i d/m/Y', $usuario->penalizacion)}}</p>
+                            <form action="{{url('/deletepenalizacion/' . $usuario->id )}}" method="POST"
+                                  style="display:inline"> {{ method_field('PUT') }} @csrf
+                                <button type="submit" class="btn btn-danger" style="color:white">Anular</button>
+                            </form>
+                        @else
+                            <button id="panalizar" type="button" class="btn btn-warning" data-toggle="modal"
+                                    data-target="#pelexampleModal" onclick="event.preventDefault();
+                                    document.getElementById('formPel').setAttribute('action', '{{url('/penalizarusuario/' . $usuario->id )}}');">
+                                Penalizar
+                            </button>
+                        @endif
+
+                    @endif
+                </td>
+                <td>
                     <a href="{{ url('/editarUsuario/' . $usuario->id ) }}" class="btn btn-success">Editar</a>
                 </td>
                 <td>
@@ -39,12 +68,6 @@
                 </td>
                 <td>
                     @if($usuario->rol != 'admin')
-                        {{--
-                        <form action="{{url('/deleteUsuario/' . $usuario->id )}}" method="POST"
-                              style="display:inline"> {{ method_field('DELETE') }} @csrf
-                            <button type="submit" class="btn btn-danger" style="display:inline">Borrar</button>
-                        </form>
-                        --}}
                         <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#delexampleModal" onclick="event.preventDefault();
                                 document.getElementById('formDel').setAttribute('action', '{{url('/deleteUsuario/' . $usuario->id )}}');">
@@ -56,6 +79,33 @@
         @endforeach
         </tbody>
     </table>
+    <!-- Modal -->
+    <div class="modal fade" id="pelexampleModal" tabindex="-1" role="dialog" aria-labelledby="pelexampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Penalizar usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Al penalizar al usuario no tendra acceso a la sección de complejos.
+
+                    <form class="form" id="formPel" action="{{url('/penalizarusuario/' . $usuario->id )}}" method="POST"
+                          style="display:inline"> {{ method_field('PUT') }} @csrf
+                        <label class="sr-only">Tiempo de penalización en días</label>
+                        <input class="form-control mb-2" type="number" name="dias"
+                               placeholder="Introduce un número de días a penalizar">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger" style="display:inline">Penalizar usuario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="delexampleModal" tabindex="-1" role="dialog" aria-labelledby="delexampleModalLabel"
@@ -136,7 +186,7 @@
             if (document.getElementById('pass').value == document.getElementById('reppass').value) {
                 document.getElementById('error').setAttribute('hidden', 'hidden');
                 document.getElementById("dis").removeAttribute('disabled');
-            }else{
+            } else {
                 document.getElementById('dis').setAttribute('disabled', 'disabled');
                 document.getElementById("error").removeAttribute('hidden');
             }

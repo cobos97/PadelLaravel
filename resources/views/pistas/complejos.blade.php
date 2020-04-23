@@ -1,15 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    {{--<h1>Zona de pistas</h1>--}}
 
-    <input type="text" name="search" id="search" class="form-control" placeholder="Busca una pista por ciudad o dirección">
+    @if(Auth()->user()->penalizacion > time())
+        <div class="alert alert-danger">Tu usuario a sido penalizado por uno de los administradores, no tendrás acceso a
+            los complejos hasta la siguiente fecha: {{date('H:i d/m/Y', Auth()->user()->penalizacion)}}.
+            Si tienes alguna duda puedes contactar con los administradores <a href="{{route('contacta')}}">aquí</a>.
+        </div>
+    @else
+        <input type="text" name="search" id="search" class="form-control"
+               placeholder="Busca una pista por ciudad o dirección">
 
-    {{--<h3>Listado de pistas</h3>--}}
-    <div class="row" id="pistas">
+        <div class="row" id="pistas">
 
-    </div>
-
+        </div>
+    @endif
 
 @endsection
 

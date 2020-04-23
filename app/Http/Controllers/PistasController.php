@@ -11,6 +11,8 @@ class PistasController extends Controller
 {
     public function index()
     {
+        date_default_timezone_set('Europe/Madrid');
+
         $pistas = Complejo::all();
 
         return view('pistas.complejos')
