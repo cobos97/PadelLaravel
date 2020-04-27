@@ -2,19 +2,12 @@
 
 @section('content')
 
-    @if(Auth()->user()->penalizacion > time())
-        <div class="alert alert-danger">Tu usuario a sido penalizado por uno de los administradores, no tendrás acceso a
-            los complejos hasta la siguiente fecha: {{date('H:i d/m/Y', Auth()->user()->penalizacion)}}.
-            Si tienes alguna duda puedes contactar con los administradores <a href="{{route('contacta')}}">aquí</a>.
-        </div>
-    @else
-        <input type="text" name="search" id="search" class="form-control"
-               placeholder="Busca una pista por ciudad o dirección">
+    <input type="text" name="search" id="search" class="form-control"
+           placeholder="Busca una pista por ciudad o dirección">
 
-        <div class="row" id="pistas">
+    <div class="row" id="pistas">
 
-        </div>
-    @endif
+    </div>
 
 @endsection
 

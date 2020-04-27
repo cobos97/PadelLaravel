@@ -51,21 +51,21 @@ Route::delete('/deleteUsuario/{id}', 'UsuariosController@deleteUsuario')->middle
 Route::put('/penalizarusuario/{id}', 'UsuariosController@putPenalizar')->middleware('es_admin');
 Route::put('/deletepenalizacion/{id}', 'UsuariosController@putDespenalizar')->middleware('es_admin');
 
-Route::get('/mensajes/{id}', 'MensajesController@index')->name('mensajes')->middleware('verified');
-Route::post('/mensajes/{id}', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified');
+Route::get('/mensajes/{id}', 'MensajesController@index')->name('mensajes')->middleware('verified', 'esta_penalizado');
+Route::post('/mensajes/{id}', 'MensajesController@enviar')->name('enviarMensaje')->middleware('verified', 'esta_penalizado');
 
 Route::get('/contacta', 'ContactaController@index')->name('contacta');
 Route::post('/contacta', 'ContactaController@enviarContacta');
 Route::get('/listaContactas', 'ContactaController@getContactas')->name('getContactas')->middleware('es_admin');
 Route::delete('/deleteContacta/{id}', 'ContactaController@deleteContacta')->middleware('es_admin');
 
-Route::get('/complejos', 'PistasController@index')->name('complejos')->middleware('verified');
-Route::get('/complejos/action', 'PistasController@action')->name('complejos.action')->middleware('verified');
-Route::get('/complejo/{id}', 'PistasController@getPista')->name('complejo')->middleware('verified');
-Route::get('/pista/{id}', 'PistasController@getPistaConcreta')->name('pista')->middleware('verified');
+Route::get('/complejos', 'PistasController@index')->name('complejos')->middleware('verified', 'esta_penalizado');
+Route::get('/complejos/action', 'PistasController@action')->name('complejos.action')->middleware('verified', 'esta_penalizado');
+Route::get('/complejo/{id}', 'PistasController@getPista')->name('complejo')->middleware('verified', 'esta_penalizado');
+Route::get('/pista/{id}', 'PistasController@getPistaConcreta')->name('pista')->middleware('verified', 'esta_penalizado');
 
-Route::get('/reservas/{id}', 'ReservasController@index')->name('reservas')->middleware('verified');
-Route::post('/reservas/{id}', 'ReservasController@reservar')->name('reservar')->middleware('verified');
+Route::get('/reservas/{id}', 'ReservasController@index')->name('reservas')->middleware('verified', 'esta_penalizado');
+Route::post('/reservas/{id}', 'ReservasController@reservar')->name('reservar')->middleware('verified', 'esta_penalizado');
 
 Route::get('/admin/reservas', 'ReservasController@getReservas')->name('reservasAdmin')->middleware('es_admin');
 Route::delete('/deleteReserva/{id}', 'ReservasController@deleteReserva')->middleware('es_admin');
@@ -77,3 +77,6 @@ Route::put('/user/{id}', 'UserController@putEditar')->middleware('verified');
 
 Route::post('/reservasdia', 'PdfController@imprimir')->name('imprimir')->middleware('es_admin');
 
+Route::get('/penalizado', function (){
+    return view('penalizado');
+})->name('penalizado');
