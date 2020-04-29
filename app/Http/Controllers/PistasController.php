@@ -56,21 +56,31 @@ class PistasController extends Controller
             if ($total_row > 0) {
                 $output = '';
                 foreach ($data as $row) {
+                    /*
+                     * <div class="card" style="width:400px">
+  <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="#" class="btn btn-primary">See Profile</a>
+  </div>
+</div>*/
+
+                    $output .= "<div class=\"card col-md-5 col-xl-3 m-3\" style=\"padding: 0;\">
+                                <a href=\"/complejo/" . $row->id . "\"><img class=\"card-img-top\" src=\"" . $row->foto . "\" alt=\"Card image\" style=\"width: 100 %; height:200px\"/></a>
+                                <div class=\"card-body\">
+                                <h4 class=\"card-title\">" . $row->lugar . "</h4>
+                                <p class=\"card-text\">" . $row->direccion . "</p>
+                                </div></div>";
+
+                    /*
                     $output .= "<div class=\"col-md-5 col-xl-3 text-center m-3\">
                                 <a href=\"/complejo/" . $row->id . "\"><img src=\"" . $row->foto . "\" style=\"width: 100%; height:200px\"/></a>
                                 <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "<br>" . $row->direccion . "</h4>
                                 </div>
                                 ";
-                    /*
-                    $output .= "<div class=\"col-md-5 col-xl-3 text-center m-3\">
-                                <img src=\"" . $row->foto . "\" style=\"height:200px\"/>
-                                <h4 style=\"min-height:45px;margin:5px 0 10px 0\">" . $row->lugar . "<br>" . $row->direccion . " - " . $row->nPista . "</h4>
-                                <a href=\"/pista/" . $row->id . "\" class=\"btn btn-primary\">Ver</a>
-                                <a href=\"/mensajes/" . $row->id . "\" class=\"btn btn-success\">Chat</a>
-                                <a href=\"/reservas/" . $row->id . "\" class=\"btn btn-warning\">Reservas</a>
-                                </div>
-                                ";
                     */
+
                 }
             } else {
                 $output = '<div class="alert alert-danger">No se encontraron pistas</div>';

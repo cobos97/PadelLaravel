@@ -28,19 +28,24 @@
     <div class="row">
         @foreach($pistas as $pista)
 
-            <div class="col-md-5 col-xl-3 text-center m-3">
-                <img src="{{asset($pista->foto)}}" style="width: 100%; height:200px"/>
-                <h4>Pista Nª {{$pista->nPista}}</h4>
+            <div class="card col-md-5 col-xl-3 m-3" style="padding: 0;">
+                <img class="card-img-top" src="{{asset($pista->foto)}}" style="width: 100%; height:200px"
+                     alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">Pista Nº{{$pista->nPista}}</h4>
+                    <a href="{{url('/admin/editarpista/' . $pista->id)}}" class="btn btn-success"
+                       style="color: white">Modificar datos</a>
+                    <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#delexampleModal" onclick="event.preventDefault();
+                            document.getElementById('formDel').setAttribute('action', '{{url('/deletePista/' . $pista->id )}}');">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
 
-                <a href="{{url('/admin/editarpista/' . $pista->id)}}" class="btn btn-success"
-                   style="color: white">Modificar datos</a>
+        @endforeach
 
-                <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#delexampleModal" onclick="event.preventDefault();
-                        document.getElementById('formDel').setAttribute('action', '{{url('/deletePista/' . $pista->id )}}');">
-                    Eliminar
-                </button>
-            </div> @endforeach</div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="delexampleModal" tabindex="-1" role="dialog" aria-labelledby="delexampleModalLabel"

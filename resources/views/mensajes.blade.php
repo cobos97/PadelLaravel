@@ -10,7 +10,8 @@
             <div class="col-9">
                 <div class="form-group">
                     <label for="contenido" class="sr-only">Contenido</label>
-                    <input type="text" class="form-control" id="contenido" name="contenido" placeholder="Envie un mensaje"
+                    <input type="text" class="form-control" id="contenido" name="contenido"
+                           placeholder="Envie un mensaje"
                            required>
                 </div>
             </div>
@@ -62,7 +63,7 @@
                     <div class="col-9">
                         <div class="mensaje ajeno">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{$mensaje->user->name}}</h5>
+                                <h5 class="mb-1">{{$mensaje->user->name}} {{$mensaje->user->apellidos}}</h5>
                                 {{--<small>{{$mensaje->created_at}}</small>--}}
                             </div>
                             <p class="mb-1">{{$mensaje->contenido}}</p>

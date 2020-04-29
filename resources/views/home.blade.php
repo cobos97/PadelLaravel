@@ -11,7 +11,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a href="{{route('complejos')}}"><img class="imgcar1" style="width: 100%"
-                                                   src="{{asset('imagenes/carrusel1.jpg')}}" alt="...">
+                                                      src="{{asset('imagenes/carrusel1.jpg')}}" alt="...">
                     <div class="carousel-caption">
                         <h5>Pistas</h5>
                         <p class="d-none d-md-block">Visita nuestro listado de pistas y reserva ya para jugar.</p>
@@ -64,8 +64,22 @@
 
 @section('content')
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-md-8">
+
+                <div class="card">
+                    <div class="card-header">Bienvenidos y bienvenidas</div>
+
+                    <div class="card-body">
+                        <p>Bienvenido a PadelSubbetica, página destinada para la reserva de pistas de padel en tus
+                            localidades cercanas
+                            de la zona de la subbética. Aquí podrás conocer a nuevos jugadores y jugadoras de tu zona y
+                            contactar con
+                            ellos a través de los chats habilitados en cada uno de los complejos de los que
+                            disponemos.</p>
+                    </div>
+                </div>
 
                 <div class="card">
                     <div class="card-header">Contacta con nosotros</div>

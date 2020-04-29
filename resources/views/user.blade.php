@@ -10,11 +10,11 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-        Editar información
+        Editar información <i class="fas fa-user-edit"></i>
     </button>
 
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#passexampleModal">
-        Cambiar contraseña
+        Cambiar contraseña <i class="fas fa-key"></i>
     </button>
 
     <h2>Tus reservas</h2>
@@ -39,7 +39,8 @@
             @foreach($reservas as $reserva)
                 <tr>
                     <th scope="row">{{$reserva->user->name}}</th>
-                    <td>{{$reserva->pista->complejo->lugar}}, {{$reserva->pista->complejo->direccion}}-{{$reserva->pista->nPista}}</td>
+                    <td>{{$reserva->pista->complejo->lugar}}, {{$reserva->pista->complejo->direccion}}
+                        -{{$reserva->pista->nPista}}</td>
                     <td>{{date('H:i d/m/Y', $reserva->fecha)}}</td>
                     <td>
                         {{--
@@ -51,7 +52,7 @@
                         <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#delexampleModal" onclick="event.preventDefault();
                                 document.getElementById('formDel').setAttribute('action', '{{url('/deleteReservaUser/' . $reserva->id )}}');">
-                            Anular
+                            Anular <i class="fas fa-window-close"></i>
                         </button>
                     </td>
                 </tr>
@@ -162,7 +163,9 @@
                                    placeholder="Repetir contraseña" onkeyup="comprobar()">
                         </div>
 
-                        <div class="alert alert-danger" id="error">Las contraseñas deben de coincidir para poder cambiarla</div>
+                        <div class="alert alert-danger" id="error">Las contraseñas deben de coincidir para poder
+                            cambiarla
+                        </div>
 
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="dis" type="submit" name="editar" value="usuario" class="btn btn-success" disabled>
@@ -187,6 +190,9 @@
             if (document.getElementById('pass').value == document.getElementById('reppass').value) {
                 document.getElementById('error').setAttribute('hidden', 'hidden');
                 document.getElementById("dis").removeAttribute('disabled');
+            } else {
+                document.getElementById('dis').setAttribute('disabled', 'disabled');
+                document.getElementById("error").removeAttribute('hidden');
             }
         }
 

@@ -45,11 +45,17 @@
     <div class="row">
         @foreach($listaPistas as $pista)
 
-            <div class="col-md-5 col-xl-3 text-center m-3">
-                <a href="{{ url('/pista/' . $pista->id)  }}"><img src="{{asset($pista->foto)}}"
-                                                              style="width: 100%; height:200px"/></a>
-                <h4>Pista Nª {{$pista->nPista}}</h4>
-            </div> @endforeach</div>
+            <div class="card col-md-5 col-xl-3 m-3" style="padding: 0;">
+                <a href="{{ url('/pista/' . $pista->id)  }}"><img class="card-img-top" src="{{asset($pista->foto)}}"
+                                                                  style="width: 100%; height:200px"
+                                                                  alt="Card image"></a>
+                <div class="card-body">
+                    <h4 class="card-title">Pista Nº{{$pista->nPista}}</h4>
+                </div>
+            </div>
+
+        @endforeach
+    </div>
 
 @endsection
 
