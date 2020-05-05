@@ -28,7 +28,7 @@ jugar.
 <table class="table table-bordered">
     <tr>
         <th>Hora</th>
-        <th>Persona</th>
+        <th>Nombre</th>
         <th>Firma</th>
     </tr>
     @foreach($reservas as $reserva)

@@ -36,6 +36,11 @@ class UserController extends Controller
 
         $usuario = User::findOrFail($id);
 
+        $usuarios = User::all();
+        foreach ($usuarios as $u) {
+            $correos[] = $u->email;
+        }
+
         if ($request->input('pass') != '') {
             $usuario->password = Hash::make($request->input('pass'));
 
@@ -43,11 +48,21 @@ class UserController extends Controller
         } else {
             $usuario->name = $request->input('nombre');
             $usuario->apellidos = $request->input('apellidos');
-            $usuario->edad = $request->input('edad');
 
             flash('Información editada con exito')->success();
-        }
 
+            if (strcmp($usuario->email, $request->input('mail'))) {
+
+                if (!in_array($request->input('mail'), $correos)) {
+                    $usuario->email = $request->input('mail');
+                    $usuario->email_verified_at = null;
+                } else {
+                    flash('Ese correo ya pertenece a otro usuario.')->error();
+                }
+
+            }
+
+        }
 
         $usuario->save();
 

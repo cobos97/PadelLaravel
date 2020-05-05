@@ -27,7 +27,7 @@ class UserValidationFormRequest extends FormRequest
         return [
             'nombre' => 'required|min:5',
             'apellidos' => 'required|min:5',
-            'edad' => 'required',
+            'mail' => 'required',
             'rol' => 'required'
         ];
     }
@@ -42,7 +42,7 @@ class UserValidationFormRequest extends FormRequest
             'nombre.min' => 'El nombre debe de contener al menos 5 caracteres',
             'apellidos.required' => 'Los apellidos son opbligatorios',
             'apellidos.min' => 'Los apellidos deben de contener al menos 5 caracteres',
-            'edad.required' => 'La edad es obligatoria',
+            'mail.required' => 'El email es obligatorio',
             'rol.required' => 'El rol es obligatorio'
         ];
     }

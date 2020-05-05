@@ -47,14 +47,33 @@ class UsuariosController extends Controller
 
         $usuario = User::findOrFail($id);
 
+        $usuarios = User::all();
+        foreach ($usuarios as $u) {
+            $correos[] = $u->email;
+        }
+
         $usuario->name = $request->input('nombre');
         $usuario->apellidos = $request->input('apellidos');
-        $usuario->edad = $request->input('edad');
         $usuario->rol = $request->input('rol');
 
-        $usuario->save();
-
         flash('Usuario editado con exito')->success();
+
+        if (strcmp($usuario->email, $request->input('mail'))) {
+
+            if (!in_array($request->input('mail'), $correos)) {
+                $usuario->email = $request->input('mail');
+                $usuario->email_verified_at = null;
+
+            } else {
+                flash('Ese correo ya pertenece a otro usuario.')->error();
+
+                $usuario->save();
+                return redirect('/editarUsuario/' . $usuario->id);
+            }
+
+        }
+
+        $usuario->save();
 
         return redirect('/usuarios');
 

@@ -75,7 +75,7 @@ class AdminController extends Controller
 
     public function filtroMensajes(Request $request)
     {
-        $arrayPistas = Pista::all();
+        $arrayPistas = Complejo::all();
 
         $users = User::where('name', $request->input('nombre'))
             ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->get();
@@ -84,7 +84,7 @@ class AdminController extends Controller
 
         if ($request->input('pista') != null) {
             foreach ($users as $user) {
-                $aux = Mensaje::where('user_id', $user->id)->where('pista_id', $request->input('pista') * 1)->get();
+                $aux = Mensaje::where('user_id', $user->id)->where('complejo_id', $request->input('pista') * 1)->get();
                 $mensajes = $mensajes->merge($aux);
             }
         } else {

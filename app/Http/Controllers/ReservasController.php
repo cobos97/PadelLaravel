@@ -65,7 +65,7 @@ class ReservasController extends Controller
             $reserva->fecha = $request->input('fecha');
             $reserva->save();
 
-            flash('Pista reservada con exito')->success();
+            flash('Pista reservada con exito. Podrás anular tu reserva desde "mi cuenta" hasta una hora antes.')->success();
         }
 
         return redirect(route('reservas', $id));

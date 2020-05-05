@@ -8,6 +8,13 @@
         @csrf
         {{method_field('PUT')}}
         <div class="form-group mb-2">
+            <label for="edad">Email</label>
+            <input type="email" class="form-control" id="mail" name="mail" value="{{ $usuario->email }}">
+            @error('mail')
+            <b>{{$message}}</b>
+            @enderror
+        </div>
+        <div class="form-group mb-2">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre"
                    value="{{ $usuario->name }}">
@@ -20,13 +27,6 @@
             <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos"
                    value="{{ $usuario->apellidos }}">
             @error('apellidos')
-            <b>{{$message}}</b>
-            @enderror
-        </div>
-        <div class="form-group mb-2">
-            <label for="edad">Edad</label>
-            <input type="number" class="form-control" id="edad" name="edad" value="{{ $usuario->edad }}">
-            @error('edad')
             <b>{{$message}}</b>
             @enderror
         </div>

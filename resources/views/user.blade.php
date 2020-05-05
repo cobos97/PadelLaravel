@@ -49,11 +49,17 @@
                             <button type="submit" class="btn btn-danger" style="display:inline">Cancelar</button>
                         </form>
                         --}}
-                        <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
-                                data-target="#delexampleModal" onclick="event.preventDefault();
-                                document.getElementById('formDel').setAttribute('action', '{{url('/deleteReservaUser/' . $reserva->id )}}');">
-                            Anular <i class="fas fa-window-close"></i>
-                        </button>
+                        @if(($reserva->fecha - time()) <= 3600)
+                            <div class="alert alert-danger">No puedes anular una reserva para la que queda menos de 1
+                                hora.
+                            </div>
+                        @else
+                            <button id="cancelar" type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#delexampleModal" onclick="event.preventDefault();
+                                    document.getElementById('formDel').setAttribute('action', '{{url('/deleteReservaUser/' . $reserva->id )}}');">
+                                Anular <i class="fas fa-window-close"></i>
+                            </button>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -107,6 +113,11 @@
                         @csrf
                         {{method_field('PUT')}}
                         <div class="form-group mb-2">
+                            <label for="edad">Correo</label>
+                            <input type="email" class="form-control" id="mail" name="mail" value="{{ $user->email }}"
+                                   required>
+                        </div>
+                        <div class="form-group mb-2">
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre"
                                    value="{{ $user->name }}" required>
@@ -117,12 +128,6 @@
                                    placeholder="Apellidos"
                                    value="{{ $user->apellidos }}" required>
                         </div>
-                        <div class="form-group mb-2">
-                            <label for="edad">Edad</label>
-                            <input type="number" class="form-control" id="edad" name="edad" value="{{ $user->edad }}"
-                                   required>
-                        </div>
-
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button type="submit" name="editar" value="usuario" class="btn btn-success">Guardar cambios
                         </button>
