@@ -6,6 +6,7 @@ use App\Pista;
 use App\Reserva;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservasController extends Controller
 {
@@ -51,19 +52,26 @@ class ReservasController extends Controller
     {
         date_default_timezone_set('Europe/Madrid');
 
-        $reserva = Reserva::where('fecha', '>', $request->input('fecha')-36000)
-            ->where('fecha', '<', $request->input('fecha')+36000)
+        $reserva = Reserva::where('fecha', '>', $request->input('fecha') - 36000)
+            ->where('fecha', '<', $request->input('fecha') + 36000)
             ->where('user_id', '=', Auth()->user()->id)
             ->get();
 
-        if (count($reserva)>0){
+        if (count($reserva) > 0) {
             flash("No puedes reservar mas de una pista en un mismo día. Comprueba tus reservas en mi cuenta.")->error();
-        }else{
+        } else {
             $reserva = new Reserva();
             $reserva->user_id = Auth()->user()->id;
             $reserva->pista_id = $id;
             $reserva->fecha = $request->input('fecha');
             $reserva->save();
+
+            $mail = $reserva->user->email;
+
+            Mail::send('mail.reservado', ['reserva' => $reserva, 'mail' => $mail], function ($message) use ($mail) {
+                $message->from('cobosmdc@gmail.com', 'PadelSubbetica');
+                $message->to($mail)->subject('Reserva de pista');
+            });
 
             flash('Pista reservada con exito. Podrás anular tu reserva desde "mi cuenta" hasta una hora antes.')->success();
         }
@@ -79,11 +87,6 @@ class ReservasController extends Controller
 
         $reservas = Reserva::where('fecha', '>', strtotime('9 am'))->get();
         $pistas = Pista::all();
-        /*
-                foreach ($reservas as $f){
-                    echo date('H:i/d/m/Y', $f->fecha) . "<br>";
-                }*/
-
 
         return view('admin.reservas')
             ->with('reservas', $reservas)
@@ -94,7 +97,13 @@ class ReservasController extends Controller
     public function deleteReserva($id)
     {
         $reserva = Reserva::findOrFail($id);
+        $mail = $reserva->user->email;
         $reserva->delete();
+
+        Mail::send('mail.cancelado', ['reserva' => $reserva, 'mail' => $mail], function ($message) use ($mail) {
+            $message->from('cobosmdc@gmail.com', 'PadelSubbetica');
+            $message->to($mail)->subject('Cancelación de pista, por administrador');
+        });
 
         flash('La reserva se ha cancelado correctamente')->success();
 
@@ -105,7 +114,13 @@ class ReservasController extends Controller
     {
         $reserva = Reserva::findOrFail($id);
         $user_id = $reserva->user_id;
+        $mail = $reserva->user->email;
         $reserva->delete();
+
+        Mail::send('mail.cancelado', ['reserva' => $reserva, 'mail' => $mail], function ($message) use ($mail) {
+            $message->from('cobosmdc@gmail.com', 'PadelSubbetica');
+            $message->to($mail)->subject('Cancelación de pista');
+        });
 
         flash('La reserva se ha cancelado correctamente')->success();
 

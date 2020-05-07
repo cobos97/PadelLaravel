@@ -77,6 +77,6 @@ Route::put('/user/{id}', 'UserController@putEditar')->middleware('verified');
 
 Route::post('/reservasdia', 'PdfController@imprimir')->name('imprimir')->middleware('es_admin');
 
-Route::get('/penalizado', function (){
+Route::get('/penalizado', function () {
     return view('penalizado');
 })->name('penalizado');
