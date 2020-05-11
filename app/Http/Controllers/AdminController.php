@@ -9,6 +9,7 @@ use App\Pista;
 use App\Complejo;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -65,7 +66,7 @@ class AdminController extends Controller
 
     public function indexMensajes()
     {
-        $mensajes = Mensaje::all();
+        $mensajes = Mensaje::orderBy('created_at', 'desc')->get();
         $arrayPistas = Complejo::all();
 
         return view('admin.mensajes')
@@ -78,18 +79,18 @@ class AdminController extends Controller
         $arrayPistas = Complejo::all();
 
         $users = User::where('name', $request->input('nombre'))
-            ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->get();
+            ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->orderBy('created_at', 'desc')->get();
 
         $mensajes = Mensaje::where('user_id', 0)->get();
 
         if ($request->input('pista') != null) {
             foreach ($users as $user) {
-                $aux = Mensaje::where('user_id', $user->id)->where('complejo_id', $request->input('pista') * 1)->get();
+                $aux = Mensaje::where('user_id', $user->id)->where('complejo_id', $request->input('pista') * 1)->orderBy('created_at', 'desc')->get();
                 $mensajes = $mensajes->merge($aux);
             }
         } else {
             foreach ($users as $user) {
-                $aux = Mensaje::where('user_id', $user->id)->get();
+                $aux = Mensaje::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
                 $mensajes = $mensajes->merge($aux);
             }
         }

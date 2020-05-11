@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = 'cobosmdc@gmail.com';
         $usuario->name = 'admin';
         $usuario->apellidos = 'admin';
-        $usuario->edad = 22;
+        $usuario->fecha_nac = '719513280';
         $usuario->rol = 'admin';
         $usuario->email_verified_at = new DateTime();
         $usuario->password = Hash::make('1234567890');
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         $usuario->email = 'a@gmail.com';
         $usuario->name = 'a';
         $usuario->apellidos = 'a';
-        $usuario->edad = 22;
+        $usuario->fecha_nac = '719513280';
         $usuario->email_verified_at = new DateTime();
         $usuario->password = Hash::make('1234567890');
         $usuario->save();

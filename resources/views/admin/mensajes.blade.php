@@ -31,6 +31,7 @@
             <th scope="col">Emisor</th>
             <th scope="col">Contenido</th>
             <th scope="col">Complejo</th>
+            <th scope="col">Fecha</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -43,6 +44,7 @@
                 <th scope="row">{{$mensaje->user->name}}</th>
                 <td>{{$mensaje->contenido}}</td>
                 <td>{{$mensaje->complejo->lugar}}, {{$mensaje->complejo->direccion}}</td>
+                <td>{{$mensaje->created_at}}</td>
                 <td>
                     <form action="{{url('/deleteMensaje/' . $mensaje->id )}}" method="POST"
                           style="display:inline"> {{ method_field('DELETE') }} @csrf

@@ -6,7 +6,7 @@
 
     <strong>Nombre: </strong>{{$user->name}}
     <strong>Apellidos: </strong>{{$user->apellidos}}
-    <strong>Edad: </strong>{{$user->edad}}
+    <strong>Edad: </strong>{{intdiv(time()-$user->fecha_nac, 31536000)}}
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">

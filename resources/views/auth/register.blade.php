@@ -72,17 +72,12 @@ stream_context_set_default([
                             </div>
 
                             <div class="form-group row">
-                                <label for="edad" class="col-md-4 col-form-label text-md-right">{{ __('Edad') }}</label>
+                                <label for="fecha_nac"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Fecha de nacimiento') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="edad" type="number" class="form-control" name="edad" required
+                                    <input id="fecha_nac" type="date" class="form-control" name="fecha_nac" required
                                            autocomplete="new-password">
-
-                                    @error('edad')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                             </div>
 

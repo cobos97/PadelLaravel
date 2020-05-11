@@ -35,7 +35,7 @@
                 <th scope="row">{{$usuario->email}}</th>
                 <td>{{$usuario->name}}</td>
                 <td>{{$usuario->apellidos}}</td>
-                <td>{{$usuario->edad}}</td>
+                <td>{{ intdiv(time()-$usuario->fecha_nac, 31536000) }}</td>
                 <td>{{$usuario->rol}}</td>
                 <td>{{$usuario->email_verified_at}}</td>
                 <td>
