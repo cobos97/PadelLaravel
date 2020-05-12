@@ -48,4 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->hasMany('App\Reserva');
     }
 
+    public function chat()
+    {
+        return $this->hasMany('App\Chat');
+    }
+
 }

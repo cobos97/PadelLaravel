@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Complejo;
 use App\Pista;
+use App\Chat;
 use App\Mensaje;
 use App\Contacta;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         self::seedPistas();
         self::seedMensajes();
         self::seedContactas();
+        self::seedChats();
     }
 
     private function seedUsers()
@@ -170,6 +172,37 @@ class DatabaseSeeder extends Seeder
         $contacta->correo = 'b@b.com';
         $contacta->contenido = 'Segundo ejemplo de mensaje desde contacta';
         $contacta->save();
+
+    }
+
+    private function seedChats()
+    {
+        DB::table('chats')->delete();
+
+        $mensaje = new Chat();
+        $mensaje->contenido = 'Primer chat de prueba';
+        $mensaje->user_id = 2;
+        $mensaje->admin = 1;
+        $mensaje->save();
+
+        $mensaje = new Chat();
+        $mensaje->contenido = 'Primer chat de prueba para el admin';
+        $mensaje->user_id = 2;
+        $mensaje->admin = 0;
+        $mensaje->save();
+
+        $mensaje = new Chat();
+        $mensaje->contenido = 'Segundo chat de prueba';
+        $mensaje->user_id = 2;
+        $mensaje->admin = 1;
+        $mensaje->save();
+
+        $mensaje = new Chat();
+        $mensaje->contenido = 'Segundo chat de prueba para el admin';
+        $mensaje->user_id = 2;
+        $mensaje->admin = 0;
+        $mensaje->save();
+
 
     }
 

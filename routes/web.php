@@ -80,3 +80,5 @@ Route::post('/reservasdia', 'PdfController@imprimir')->name('imprimir')->middlew
 Route::get('/penalizado', function () {
     return view('penalizado');
 })->name('penalizado');
+
+Route::get('/chatadmin', 'ChatController@indexCliente')->name('chatAdmin')->middleware('verified');
