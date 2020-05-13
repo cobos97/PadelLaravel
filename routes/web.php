@@ -82,3 +82,11 @@ Route::get('/penalizado', function () {
 })->name('penalizado');
 
 Route::get('/chatadmin', 'ChatController@indexCliente')->name('chatAdmin')->middleware('verified');
+Route::post('/chatadmin', 'ChatController@enviarCliente')->name('enviarChatCliente')->middleware('verified');
+
+Route::get('/chats', 'ChatController@indexListaCliente')->name('listaChats')->middleware('es_admin');
+Route::post('/chats', 'ChatController@nuevoChat')->name('nuevoChat')->middleware('es_admin');
+
+Route::get('/chat/{id}', 'ChatController@getChat')->name('getChat')->middleware('es_admin');
+Route::post('/chat/{id}', 'ChatController@enviarAdmin')->name('enviarChatAdmin')->middleware('es_admin');
+Route::delete('deletechat/{id}', 'ChatController@deleteChat')->name('deleteChat')->middleware('es_admin');

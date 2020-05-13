@@ -83,6 +83,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{url('/user/' . Auth::user()->id )}}">Mi cuenta</a>
+                                <a class="dropdown-item" href="{{url('/chatadmin')}}">Chat con administrador</a>
 
                                 <div class="dropdown-divider"></div>
 
