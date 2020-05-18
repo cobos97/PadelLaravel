@@ -19,7 +19,7 @@ class CreateComplejosTable extends Migration
             $table->string('lugar');
             $table->string('direccion');
             $table->string('foto');
-            $table->string('descripcion');
+            $table->string('descripcion', 1000);
             $table->string('coorX');
             $table->string('coorY');
 

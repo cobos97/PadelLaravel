@@ -43,8 +43,17 @@ class DatabaseSeeder extends Seeder
 
         $usuario = new User();
         $usuario->email = 'a@gmail.com';
-        $usuario->name = 'a';
-        $usuario->apellidos = 'a';
+        $usuario->name = 'Antonio';
+        $usuario->apellidos = 'Cobos';
+        $usuario->fecha_nac = '719513280';
+        $usuario->email_verified_at = new DateTime();
+        $usuario->password = Hash::make('1234567890');
+        $usuario->save();
+
+        $usuario = new User();
+        $usuario->email = 'b@gmail.com';
+        $usuario->name = 'Andrea';
+        $usuario->apellidos = 'Sanchez';
         $usuario->fecha_nac = '719513280';
         $usuario->email_verified_at = new DateTime();
         $usuario->password = Hash::make('1234567890');
@@ -60,7 +69,8 @@ class DatabaseSeeder extends Seeder
         $complejo->lugar = 'Moriles';
         $complejo->direccion = 'Avenida del Deporte';
         $complejo->foto = 'imagenes/moriles.png';
-        $complejo->descripcion = 'descripcion';
+        $complejo->descripcion = 'Complejo de acceso gratuito. Dispone de baños y duchas, aunque las duchas no siempre
+         están disponibles. No hay servicio de barra.';
         $complejo->coorX = '37.439475';
         $complejo->coorY = '-4.604238';
         $complejo->save();
@@ -69,7 +79,9 @@ class DatabaseSeeder extends Seeder
         $complejo->lugar = 'FernanNuñez';
         $complejo->direccion = 'Carretera la Rambla';
         $complejo->foto = 'imagenes/fernannunez.jpg';
-        $complejo->descripcion = 'descripcion';
+        $complejo->descripcion = 'En FernanNuñez el acceso es gratuito, aunque tienen prioridad los miembros del
+         club. Se pueden utilizar los baños del pabellon que se encuentran justo a la entrada del complejo y tienen
+          duchas. No dispone de servicio de barra.';
         $complejo->coorX = '37.665880';
         $complejo->coorY = '-4.727652';
         $complejo->save();
@@ -78,7 +90,8 @@ class DatabaseSeeder extends Seeder
         $complejo->lugar = 'Lucena';
         $complejo->direccion = 'Calle del Deporte';
         $complejo->foto = 'imagenes/lucena.png';
-        $complejo->descripcion = 'descripcion';
+        $complejo->descripcion = 'La entrada en este complejo no es gratuita. Los baños si desponen de duchas. Este
+         complejo no dispone de servicio de barra pero si encontramos máquinas expendedoras en la entrada.';
         $complejo->coorX = '37.407894';
         $complejo->coorY = '-4.473263';
         $complejo->save();
@@ -92,26 +105,42 @@ class DatabaseSeeder extends Seeder
         $pista = new Pista();
         $pista->complejo_id = 1;
         $pista->foto = 'imagenes/moriles.jpg';
-        $pista->descripcion = 'descripcion';
+        $pista->descripcion = 'Cesped de color verde, con las paredes de metacrilato y mas arena de la media. La pista tiene apenas 1 año y esta en perfectas condiciones.';
         $pista->save();
 
         $pista = new Pista();
         $pista->complejo_id = 2;
         $pista->foto = 'imagenes/fernannunezP.jpg';
-        $pista->descripcion = 'descripcion';
+        $pista->descripcion = 'Cesped de color verde, con las paredes de metacrilato. Ambas pistas son idénticas.';
+        $pista->save();
+
+        $pista = new Pista();
+        $pista->complejo_id = 2;
+        $pista->foto = 'imagenes/fernannunezP.jpg';
+        $pista->descripcion = 'Cesped de color verde, con las paredes de metacrilato. Ambas pistas son idénticas.';
         $pista->save();
 
         $pista = new Pista();
         $pista->complejo_id = 3;
         $pista->foto = 'imagenes/lucena.jpg';
-        $pista->descripcion = 'descripcion';
+        $pista->descripcion = 'Cesped de color azul, con paredes de metacrilato. Esta pista esta situada a un lado
+         del complejo, por lo que las bolas que se cuelen entre paredes se dan por perdidas.';
         $pista->save();
 
         $pista = new Pista();
         $pista->complejo_id = 3;
         $pista->nPista = '2';
         $pista->foto = 'imagenes/lucenaP.jpg';
-        $pista->descripcion = 'descripcion';
+        $pista->descripcion = 'Cesped de color rojo, con paredes de metacrilato. Esta pista esta situada en la parte
+         central del complejo.';
+        $pista->save();
+
+        $pista = new Pista();
+        $pista->complejo_id = 3;
+        $pista->nPista = '2';
+        $pista->foto = 'imagenes/lucenaP.jpg';
+        $pista->descripcion = 'Cesped de color azul, con paredes de metacrilato. Esta pista esta situada a un lado
+         del complejo, por lo que las bolas que se cuelen entre paredes se dan por perdidas.';
         $pista->save();
 
     }
@@ -121,38 +150,45 @@ class DatabaseSeeder extends Seeder
         DB::table('mensajes')->delete();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = 'Primer mensaje de prueba';
-        $mensaje->user_id = 1;
-        $mensaje->complejo_id = 1;
-        $mensaje->save();
-
-        $mensaje = new Mensaje();
-        $mensaje->contenido = 'Primer mensaje de prueba';
-        $mensaje->user_id = 2;
-        $mensaje->complejo_id = 1;
-        $mensaje->save();
-
-        $mensaje = new Mensaje();
-        $mensaje->contenido = 'Segundo mensaje de prueba';
-        $mensaje->user_id = 1;
-        $mensaje->complejo_id = 2;
-        $mensaje->save();
-
-        $mensaje = new Mensaje();
-        $mensaje->contenido = 'Segundo mensaje de prueba';
+        $mensaje->contenido = 'Buenos días, nos falta uno para esta tarde a las 17:00';
         $mensaje->user_id = 2;
         $mensaje->complejo_id = 2;
         $mensaje->save();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = 'Tercer mensaje de prueba';
+        $mensaje->contenido = 'Me apunto, contad conmigo';
+        $mensaje->user_id = 3;
+        $mensaje->complejo_id = 2;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = '¿Alguien se olvido ayer una sudadera en la pista?';
+        $mensaje->user_id = 2;
+        $mensaje->complejo_id = 1;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Si Antonio, es mía. Guardamela por favor, y gracias';
+        $mensaje->user_id = 3;
+        $mensaje->complejo_id = 1;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Me comentan en Lucena que se va a organizar un torneo pronto. Para apuntaros solo
+         teneis que hablar con el chico de la entrada.';
+        $mensaje->user_id = 1;
+        $mensaje->complejo_id = 3;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Graciaaas';
         $mensaje->user_id = 2;
         $mensaje->complejo_id = 3;
         $mensaje->save();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = 'Tercer mensaje de prueba';
-        $mensaje->user_id = 2;
+        $mensaje->contenido = 'Gracias';
+        $mensaje->user_id = 3;
         $mensaje->complejo_id = 3;
         $mensaje->save();
 
@@ -165,12 +201,13 @@ class DatabaseSeeder extends Seeder
 
         $contacta = new Contacta();
         $contacta->correo = 'a@a.com';
-        $contacta->contenido = 'Ejemplo de mensaje desde contacta';
+        $contacta->contenido = 'Hola, me registre hace unos días y no me llega el mensaje de confirmación de correo. 
+        ¿Podrían cambiarme el correo dwdw@gmail.com al que les envio ahora en el mensaje?';
         $contacta->save();
 
         $contacta = new Contacta();
         $contacta->correo = 'b@b.com';
-        $contacta->contenido = 'Segundo ejemplo de mensaje desde contacta';
+        $contacta->contenido = 'SOy nuevo con los ordenadores. ¿Cçomo podría registrarme en su página?';
         $contacta->save();
 
     }
@@ -180,27 +217,28 @@ class DatabaseSeeder extends Seeder
         DB::table('chats')->delete();
 
         $mensaje = new Chat();
-        $mensaje->contenido = 'Primer chat de prueba';
+        $mensaje->contenido = 'Me comentan en Moriles que dejasteis basura tirada por el suelo la última vez,
+         a la próxima me veré obligado a penalizarte pues eras el responsable en ese momento';
         $mensaje->user_id = 2;
         $mensaje->admin = 1;
         $mensaje->save();
 
         $mensaje = new Chat();
-        $mensaje->contenido = 'Primer chat de prueba para el admin';
+        $mensaje->contenido = 'Perdón, no volverá a pasar';
         $mensaje->user_id = 2;
         $mensaje->admin = 0;
         $mensaje->save();
 
         $mensaje = new Chat();
-        $mensaje->contenido = 'Segundo chat de prueba';
-        $mensaje->user_id = 2;
+        $mensaje->contenido = 'Hola admin, me gustaría saber cuando introducirán los demás complejos de Lucena';
+        $mensaje->user_id = 3;
+        $mensaje->admin = 0;
+        $mensaje->save();
+
+        $mensaje = new Chat();
+        $mensaje->contenido = 'Estamos hablando con ellos para ponernos de acuerdo';
+        $mensaje->user_id = 3;
         $mensaje->admin = 1;
-        $mensaje->save();
-
-        $mensaje = new Chat();
-        $mensaje->contenido = 'Segundo chat de prueba para el admin';
-        $mensaje->user_id = 2;
-        $mensaje->admin = 0;
         $mensaje->save();
 
 

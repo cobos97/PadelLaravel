@@ -13,7 +13,7 @@
             <i class="fas fa-comments"></i></a></h1>
 
 
-    <p>{{$complejo->descripcion}}</p>
+
 
 
 

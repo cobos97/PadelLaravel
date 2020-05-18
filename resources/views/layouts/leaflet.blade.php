@@ -125,6 +125,7 @@
 
             <div class="row" style="margin-top: 15px">
                 <div class="col-md">
+                    <p>{{$complejo->descripcion}}</p>
                     <img src="{{asset($complejo->foto)}}" style="width:100%; margin-bottom: 20px;"/>
                 </div>
                 <div class="col-md">

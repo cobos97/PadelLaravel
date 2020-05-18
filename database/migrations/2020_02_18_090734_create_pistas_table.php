@@ -20,7 +20,7 @@ class CreatePistasTable extends Migration
 
             $table->string('nPista')->default('1');
             $table->string('foto');
-            $table->string('descripcion');
+            $table->string('descripcion', 1000);
 
 
             $table->timestamps();
