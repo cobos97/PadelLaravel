@@ -96,6 +96,16 @@ class DatabaseSeeder extends Seeder
         $complejo->coorY = '-4.473263';
         $complejo->save();
 
+        $complejo = new Complejo();
+        $complejo->lugar = 'Monturque';
+        $complejo->direccion = 'Calle de los Reyes Católicos';
+        $complejo->foto = 'imagenes/complejo_monturk.PNG';
+        $complejo->descripcion = 'La entrada en este complejo no es gratuita, pero el precio es simbólico. Los baños si
+         desponen de duchas. También dispone de servicio de barra.';
+        $complejo->coorX = '37.466635';
+        $complejo->coorY = '-4.579129';
+        $complejo->save();
+
     }
 
     private function seedPistas()
@@ -137,10 +147,25 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->complejo_id = 3;
-        $pista->nPista = '2';
+        $pista->nPista = '3';
         $pista->foto = 'imagenes/lucenaP.jpg';
         $pista->descripcion = 'Cesped de color azul, con paredes de metacrilato. Esta pista esta situada a un lado
          del complejo, por lo que las bolas que se cuelen entre paredes se dan por perdidas.';
+        $pista->save();
+
+        $pista = new Pista();
+        $pista->complejo_id = 4;
+        $pista->foto = 'imagenes/pista_1_monturk.jpg';
+        $pista->descripcion = 'Cesped de color azul, con paredes de metacrilato. Cesped renovado justo antes del 
+        confinamiento, por lo que apenas ha sido estrenado.';
+        $pista->save();
+
+        $pista = new Pista();
+        $pista->complejo_id = 4;
+        $pista->nPista = '2';
+        $pista->foto = 'imagenes/pista_2_monturk.jpg';
+        $pista->descripcion = 'Cesped de color verde, con paredes de metacrilato. Cesped en bastante mal estado
+         porque tiene mucho tiempo y esta muy gastado, esto ayuda a que la bola salga mucho más.';
         $pista->save();
 
     }
@@ -190,6 +215,12 @@ class DatabaseSeeder extends Seeder
         $mensaje->contenido = 'Gracias';
         $mensaje->user_id = 3;
         $mensaje->complejo_id = 3;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = '¿Quién se apunta a estrenar la pista nueva?';
+        $mensaje->user_id = 2;
+        $mensaje->complejo_id = 4;
         $mensaje->save();
 
     }
