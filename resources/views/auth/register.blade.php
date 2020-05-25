@@ -61,7 +61,7 @@ stream_context_set_default([
 
                                 <div class="col-md-6">
                                     <input id="apellidos" type="text" class="form-control" name="apellidos" required
-                                           autocomplete="new-password">
+                                           autocomplete="new-password" value="{{ old('apellidos') }}">
 
                                     @error('apellidos')
                                     <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@ stream_context_set_default([
 
                                 <div class="col-md-6">
                                     <input id="fecha_nac" type="date" class="form-control" name="fecha_nac" required
-                                           autocomplete="new-password">
+                                           autocomplete="new-password" value="{{ old('fecha_nac') }}">
                                 </div>
                             </div>
 
