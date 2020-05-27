@@ -37,7 +37,13 @@ Route::get('/admin/editarpista/{id}', 'AdminController@getEditarPista')->middlew
 Route::put('/admin/editarpista/{id}', 'AdminController@putEditarPista')->middleware('es_admin');
 
 Route::get('/admin/mensajes', 'AdminController@indexMensajes')->name('mensajesAdmin')->middleware('es_admin');
+
+Route::get('/admin/mensajes/{nombre}/{complejo?}', 'AdminController@filtroGet')->name('filtroGet')->middleware('es_admin');
+
 Route::post('/admin/mensajes', 'AdminController@filtroMensajes')->middleware('es_admin');
+Route::post('/admin/mensajes/{nombre?}/{pista?}', 'AdminController@filtroMensajes')->middleware('es_admin');
+
+
 Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
 
 Route::delete('/deleteMensajeUser/{pista_id}/{id}', 'MensajesController@deleteMensaje');

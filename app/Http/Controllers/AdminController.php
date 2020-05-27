@@ -76,7 +76,6 @@ class AdminController extends Controller
 
     public function filtroMensajes(Request $request)
     {
-        $arrayPistas = Complejo::all();
 
         $users = User::where('name', $request->input('nombre'))
             ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->orderBy('created_at', 'desc')->get();
@@ -85,39 +84,56 @@ class AdminController extends Controller
             $ids[] = $user->id;
         }
 
-        //$mensajes = Mensaje::where('user_id', 0)->get();
+        if ( strcmp($request->input('pista'), 'null')) {
 
-        if ($request->input('pista') != null) {
-
-            $mensajes = Mensaje::whereIn('user_id', $ids)->where('complejo_id', $request->input('pista') * 1)->paginate(10);
-
-            /*
-            foreach ($users as $user) {
-                $aux = Mensaje::where('user_id', $user->id)->where('complejo_id', $request->input('pista') * 1)->orderBy('created_at', 'desc')->get();
-                $mensajes = $mensajes->merge($aux);
+            if ($request->input('nombre') == null){
+                return redirect(url('/admin/mensajes/_/' . $request->input('pista')));
+            }else{
+                return redirect(url('/admin/mensajes/' . $request->input('nombre') . '/' . $request->input('pista')));
             }
-            */
 
         } else {
 
-            $mensajes = Mensaje::whereIn('user_id', $ids)->paginate(10);
-
-            /*
-            foreach ($users as $user) {
-                $aux = Mensaje::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
-                $mensajes = $mensajes->merge($aux);
-            }
-            */
+            return redirect(url('/admin/mensajes/' . $request->input('nombre') . '/null'));
 
         }
 
-        //$mensajes = $mensajes->paginate(10);
-        //$mensajes = $mensajes->forPage($_GET['page'], 5);
+    }
+
+    public function filtroGet($nombre, $complejo=null){
+
+        $arrayPistas = Complejo::all();
+
+        if ($nombre == '_'){
+            $users = User::all();
+        }else{
+            $users = User::where('name', $nombre)
+                ->orWhere('name', 'like', '%' . $nombre . '%')->orderBy('created_at', 'desc')->get();
+        }
+
+        foreach ($users as $user) {
+            $ids[] = $user->id;
+        }
+
+        if (!isset($ids)){
+
+            $mensajes = Mensaje::where('user_id', '=', 0)->orderBy('created_at', 'desc')->paginate(10);
+
+            return view('admin.mensajes')
+                ->with('mensajes', $mensajes)
+                ->with('pistas', $arrayPistas);
+        }
+
+        if ($complejo != null) {
+
+            $mensajes = Mensaje::whereIn('user_id', $ids)->where('complejo_id', $complejo * 1)->orderBy('created_at', 'desc')->paginate(10);
 
 
-        //dd($mensajes);
+        } else {
 
+            $mensajes = Mensaje::whereIn('user_id', $ids)->orderBy('created_at', 'desc')->paginate(10);
 
+        }
 
         return view('admin.mensajes')
             ->with('mensajes', $mensajes)
