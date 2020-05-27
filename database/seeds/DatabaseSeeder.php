@@ -59,6 +59,15 @@ class DatabaseSeeder extends Seeder
         $usuario->password = Hash::make('1234567890');
         $usuario->save();
 
+        $usuario = new User();
+        $usuario->email = 'cobosmoriles@gmail.com';
+        $usuario->name = 'Antonio Miguel';
+        $usuario->apellidos = 'Cobos Fernández';
+        $usuario->fecha_nac = '719513280';
+        $usuario->email_verified_at = new DateTime();
+        $usuario->password = Hash::make('1234567890');
+        $usuario->save();
+
     }
 
     private function complejos()

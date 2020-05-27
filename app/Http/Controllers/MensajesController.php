@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Complejo;
 use App\Mensaje;
 use App\Pista;
 use Illuminate\Http\Request;
@@ -16,9 +17,11 @@ class MensajesController extends Controller
         $mensajes = Mensaje::where('complejo_id', $id)->orderBy('created_at', 'desc')->get();
         //::orderBy('created_at', 'desc')
 
+        $complejo = Complejo::findOrFail($id);
 
         return view('mensajes')
             ->with('pista_id', $id)
+            ->with('complejo', $complejo)
             ->with('mensajes', $mensajes);
     }
 

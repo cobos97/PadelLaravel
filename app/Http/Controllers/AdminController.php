@@ -66,7 +66,7 @@ class AdminController extends Controller
 
     public function indexMensajes()
     {
-        $mensajes = Mensaje::orderBy('created_at', 'desc')->get();
+        $mensajes = Mensaje::orderBy('created_at', 'desc')->paginate(10);
         $arrayPistas = Complejo::all();
 
         return view('admin.mensajes')
@@ -81,24 +81,48 @@ class AdminController extends Controller
         $users = User::where('name', $request->input('nombre'))
             ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->orderBy('created_at', 'desc')->get();
 
-        $mensajes = Mensaje::where('user_id', 0)->get();
+        foreach ($users as $user) {
+            $ids[] = $user->id;
+        }
+
+        //$mensajes = Mensaje::where('user_id', 0)->get();
 
         if ($request->input('pista') != null) {
+
+            $mensajes = Mensaje::whereIn('user_id', $ids)->where('complejo_id', $request->input('pista') * 1)->paginate(10);
+
+            /*
             foreach ($users as $user) {
                 $aux = Mensaje::where('user_id', $user->id)->where('complejo_id', $request->input('pista') * 1)->orderBy('created_at', 'desc')->get();
                 $mensajes = $mensajes->merge($aux);
             }
+            */
+
         } else {
+
+            $mensajes = Mensaje::whereIn('user_id', $ids)->paginate(10);
+
+            /*
             foreach ($users as $user) {
                 $aux = Mensaje::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
                 $mensajes = $mensajes->merge($aux);
             }
+            */
+
         }
+
+        //$mensajes = $mensajes->paginate(10);
+        //$mensajes = $mensajes->forPage($_GET['page'], 5);
+
+
+        //dd($mensajes);
+
 
 
         return view('admin.mensajes')
             ->with('mensajes', $mensajes)
             ->with('pistas', $arrayPistas);
+
     }
 
     public function insertarComplejo(ValidationFormRequest $request)

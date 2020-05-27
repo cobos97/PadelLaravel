@@ -4,6 +4,8 @@
 
     <a href="{{url('/complejo/' . $pista_id)}}" class="enlace">Volver</a>
 
+    <h1>{{$complejo->lugar}}, {{$complejo->direccion}}</h1>
+
     <form class="form" action="" method="post">
         @csrf
         <div class="row">

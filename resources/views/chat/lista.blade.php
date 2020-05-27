@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <a href="{{url('/home')}}" class="enlace">Volver</a>
+    <a href="{{url('/admin')}}" class="enlace">Volver</a>
 
     <h1>Abrir nuevo chat</h1>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserValidationFormRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UsuariosController extends Controller
 {
@@ -13,7 +14,7 @@ class UsuariosController extends Controller
 
         date_default_timezone_set('Europe/Madrid');
 
-        $usuarios = User::all();
+        $usuarios = User::paginate(10);
 
         return view('usuarios')
             ->with('usuarios', $usuarios);
@@ -25,7 +26,7 @@ class UsuariosController extends Controller
         date_default_timezone_set('Europe/Madrid');
 
         $usuarios = User::where('email', $request->input('nombre'))
-            ->orWhere('email', 'like', '%' . $request->input('nombre') . '%')->get();
+            ->orWhere('email', 'like', '%' . $request->input('nombre') . '%')->paginate(2);
 
         return view('usuarios')
             ->with('usuarios', $usuarios);
@@ -87,6 +88,13 @@ class UsuariosController extends Controller
         $usuario->penalizacion = time() + $request->input('dias') * 3600 * 24;
 
         $usuario->save();
+
+        $mail = $usuario->email;
+
+        Mail::send('mail.penalizado', ['user' => $usuario, 'mail' => $mail], function ($message) use ($mail) {
+            $message->from('cobosmdc@gmail.com', 'PadelSubbetica');
+            $message->to($mail)->subject('Aviso de penalización');
+        });
 
         flash('El usuario a sido penalizado con exito')->success();
 

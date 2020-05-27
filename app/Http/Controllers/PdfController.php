@@ -22,7 +22,7 @@ class PdfController extends Controller
             return redirect(route('reservasAdmin'));
         }else{
             $pdf = \PDF::loadView('pdf.reservasdia', compact('reservas'));
-            return $pdf->download($pista->lugar . '__' . date('d/m/Y', time()) . '.pdf');
+            return $pdf->download($pista->complejo->lugar . '_' . $pista->complejo->direccion . '__' . date('d/m/Y', time()) . '.pdf');
         }
 
 

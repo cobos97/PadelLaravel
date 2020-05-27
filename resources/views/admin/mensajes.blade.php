@@ -56,4 +56,6 @@
         </tbody>
     </table>
 
+    {{$mensajes->links()}}
+
 @endsection

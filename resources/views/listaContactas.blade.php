@@ -20,4 +20,6 @@
         </div>
     @endforeach
 
+    {{$contactas->links()}}
+
 @endsection

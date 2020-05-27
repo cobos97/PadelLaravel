@@ -23,7 +23,7 @@ class ContactaController extends Controller
     }
 
     public function getContactas(){
-        $contactas = Contacta::orderBy('created_at', 'desc')->get();
+        $contactas = Contacta::orderBy('created_at', 'desc')->paginate(3);
 
         return view('listaContactas')
             ->with('contactas', $contactas);

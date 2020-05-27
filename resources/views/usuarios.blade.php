@@ -79,6 +79,7 @@
         @endforeach
         </tbody>
     </table>
+    {{$usuarios->links()}}
     <!-- Modal -->
     <div class="modal fade" id="pelexampleModal" tabindex="-1" role="dialog" aria-labelledby="pelexampleModalLabel"
          aria-hidden="true">
