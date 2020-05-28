@@ -36,20 +36,24 @@ Route::put('/admin/editarcomplejo/{id}', 'AdminController@putEditarComplejo')->m
 Route::get('/admin/editarpista/{id}', 'AdminController@getEditarPista')->middleware('es_admin');
 Route::put('/admin/editarpista/{id}', 'AdminController@putEditarPista')->middleware('es_admin');
 
-Route::get('/admin/mensajes', 'AdminController@indexMensajes')->name('mensajesAdmin')->middleware('es_admin');
 
+Route::get('/admin/mensajes', 'AdminController@indexMensajes')->name('mensajesAdmin')->middleware('es_admin');
 Route::get('/admin/mensajes/{nombre}/{complejo?}', 'AdminController@filtroGet')->name('filtroGet')->middleware('es_admin');
 
 Route::post('/admin/mensajes', 'AdminController@filtroMensajes')->middleware('es_admin');
-Route::post('/admin/mensajes/{nombre?}/{pista?}', 'AdminController@filtroMensajes')->middleware('es_admin');
-
+Route::post('/admin/mensajes/{nombre}/{pista?}', 'AdminController@filtroMensajes')->middleware('es_admin');
 
 Route::delete('/deleteMensaje/{id}', 'AdminController@deleteMensaje')->middleware('es_admin');
 
+
 Route::delete('/deleteMensajeUser/{pista_id}/{id}', 'MensajesController@deleteMensaje');
 
+
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios')->middleware('es_admin');
-Route::post('/usuarios', 'UsuariosController@getFiltro')->middleware('es_admin');
+Route::get('/usuarios/{nombre}', 'UsuariosController@filtroGet')->name('usuariosGet')->middleware('es_admin');
+
+Route::post('/usuarios/{nombre?}', 'UsuariosController@getFiltro')->middleware('es_admin');
+
 
 Route::get('/editarUsuario/{id}', 'UsuariosController@getEditar')->middleware('es_admin');
 Route::put('/editarUsuario/{id}', 'UsuariosController@putEditar')->middleware('es_admin');
@@ -73,10 +77,16 @@ Route::get('/pista/{id}', 'PistasController@getPistaConcreta')->name('pista');
 Route::get('/reservas/{id}', 'ReservasController@index')->name('reservas')->middleware('verified', 'esta_penalizado');
 Route::post('/reservas/{id}', 'ReservasController@reservar')->name('reservar')->middleware('verified', 'esta_penalizado');
 
+
 Route::get('/admin/reservas', 'ReservasController@getReservas')->name('reservasAdmin')->middleware('es_admin');
+Route::get('/admin/reservas/{nombre}/{pista?}', 'ReservasController@filtroGet')->name('filtroGet')->middleware('es_admin');
+
+Route::post('/admin/reservas', 'ReservasController@filtroReservas')->middleware('es_admin');
+Route::post('/admin/reservas/{nombre}/{pista?}', 'ReservasController@filtroReservas')->middleware('es_admin');
+
 Route::delete('/deleteReserva/{id}', 'ReservasController@deleteReserva')->middleware('es_admin');
 Route::delete('/deleteReservaUser/{id}', 'ReservasController@deleteReservaUser')->middleware('verified');
-Route::post('/admin/reservas', 'ReservasController@filtroReservas')->middleware('es_admin');
+
 
 Route::get('/user/{id}', 'UserController@index')->middleware('verified');
 Route::put('/user/{id}', 'UserController@putEditar')->middleware('verified');

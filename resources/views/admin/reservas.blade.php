@@ -69,4 +69,6 @@
         </table>
     @endif
 
+    {{$reservas->links()}}
+
 @endsection

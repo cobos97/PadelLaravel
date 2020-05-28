@@ -76,14 +76,14 @@ class AdminController extends Controller
 
     public function filtroMensajes(Request $request)
     {
-
+/*
         $users = User::where('name', $request->input('nombre'))
             ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->orderBy('created_at', 'desc')->get();
 
         foreach ($users as $user) {
             $ids[] = $user->id;
         }
-
+*/
         if ( strcmp($request->input('pista'), 'null')) {
 
             if ($request->input('nombre') == null){

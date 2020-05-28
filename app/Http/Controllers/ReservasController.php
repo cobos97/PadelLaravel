@@ -85,7 +85,7 @@ class ReservasController extends Controller
 
         date_default_timezone_set('Europe/Madrid');
 
-        $reservas = Reserva::where('fecha', '>', strtotime('9 am'))->get();
+        $reservas = Reserva::where('fecha', '>', strtotime('9 am'))->paginate(8);
         $pistas = Pista::all();
 
         return view('admin.reservas')
@@ -129,6 +129,7 @@ class ReservasController extends Controller
 
     public function filtroReservas(Request $request)
     {
+        /*
         $arrayPistas = Pista::all();
 
         $users = User::where('name', $request->input('nombre'))
@@ -152,6 +153,64 @@ class ReservasController extends Controller
         return view('admin.reservas')
             ->with('reservas', $reservas)
             ->with('pistas', $arrayPistas);
+        */
+
+        if ( strcmp($request->input('pista'), 'null')) {
+
+            if ($request->input('nombre') == null){
+                return redirect(url('/admin/reservas/_/' . $request->input('pista')));
+            }else{
+                return redirect(url('/admin/reservas/' . $request->input('nombre') . '/' . $request->input('pista')));
+            }
+
+        } else {
+
+            return redirect(url('/admin/reservas/' . $request->input('nombre') . '/null'));
+
+        }
+
+    }
+
+    public function filtroGet($nombre, $pista = null)
+    {
+
+        $arrayPistas = Pista::all();
+
+        if ($nombre == '_') {
+            $users = User::all();
+        } else {
+            $users = User::where('name', $nombre)
+                ->orWhere('name', 'like', '%' . $nombre . '%')->orderBy('created_at', 'desc')->get();
+        }
+
+        foreach ($users as $user) {
+            $ids[] = $user->id;
+        }
+
+        if (!isset($ids)) {
+
+            $reservas = Reserva::where('user_id', '=', 0)->orderBy('created_at', 'desc')->where('fecha', '>', strtotime('9 am'))->paginate(8);
+
+            return view('admin.reservas')
+                ->with('reservas', $reservas)
+                ->with('pistas', $arrayPistas);
+        }
+
+        if ($pista != null) {
+
+            $reservas = Reserva::whereIn('user_id', $ids)->where('pista_id', $pista * 1)->where('fecha', '>', strtotime('9 am'))->paginate(8);
+
+
+        } else {
+
+            $reservas = Reserva::whereIn('user_id', $ids)->where('fecha', '>', strtotime('9 am'))->paginate(8);
+
+        }
+
+        return view('admin.reservas')
+            ->with('reservas', $reservas)
+            ->with('pistas', $arrayPistas);
+
     }
 
 }

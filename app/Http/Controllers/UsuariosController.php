@@ -14,7 +14,7 @@ class UsuariosController extends Controller
 
         date_default_timezone_set('Europe/Madrid');
 
-        $usuarios = User::paginate(10);
+        $usuarios = User::paginate(8);
 
         return view('usuarios')
             ->with('usuarios', $usuarios);
@@ -25,8 +25,28 @@ class UsuariosController extends Controller
 
         date_default_timezone_set('Europe/Madrid');
 
+        /*
         $usuarios = User::where('email', $request->input('nombre'))
             ->orWhere('email', 'like', '%' . $request->input('nombre') . '%')->paginate(2);
+
+        return view('usuarios')
+            ->with('usuarios', $usuarios);
+        */
+
+        if ($request->input('nombre') == null){
+            return redirect(url('/usuarios'));
+        }else{
+            return redirect(url('/usuarios/' . $request->input('nombre')));
+        }
+
+    }
+
+    public function filtroGet($nombre=null){
+
+        date_default_timezone_set('Europe/Madrid');
+
+        $usuarios = User::where('email', $nombre)
+            ->orWhere('email', 'like', '%' . $nombre . '%')->paginate(8);
 
         return view('usuarios')
             ->with('usuarios', $usuarios);

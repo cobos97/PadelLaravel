@@ -135,6 +135,7 @@ class DatabaseSeeder extends Seeder
 
         $pista = new Pista();
         $pista->complejo_id = 2;
+        $pista->nPista = '2';
         $pista->foto = 'imagenes/fernannunezP.jpg';
         $pista->descripcion = 'Cesped de color verde, con las paredes de metacrilato. Ambas pistas son idénticas.';
         $pista->save();
