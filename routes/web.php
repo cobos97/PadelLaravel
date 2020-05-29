@@ -106,3 +106,12 @@ Route::post('/chats', 'ChatController@nuevoChat')->name('nuevoChat')->middleware
 Route::get('/chat/{id}', 'ChatController@getChat')->name('getChat')->middleware('es_admin');
 Route::post('/chat/{id}', 'ChatController@enviarAdmin')->name('enviarChatAdmin')->middleware('es_admin');
 Route::delete('deletechat/{id}', 'ChatController@deleteChat')->name('deleteChat')->middleware('es_admin');
+
+
+Route::get('/historial', 'ReservasController@historialReservas')->name('historial')->middleware('es_admin');
+Route::get('/historial/{nombre}/{pista}/{de}/{hasta}', 'ReservasController@filtroHistorialReservas')->name('filtroHistorial')->middleware('es_admin');
+
+Route::post('/historial', 'ReservasController@postHistorial')->middleware('es_admin');
+Route::post('/historial/{nombre}/{pista}/{de}/{hasta}', 'ReservasController@postHistorial')->middleware('es_admin');
+
+Route::get('/historialPdf/{nombre}/{pista}/{de}/{hasta}', 'ReservasController@generarPdfHistorial')->middleware('es_admin');

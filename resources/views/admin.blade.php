@@ -20,6 +20,9 @@
             <h2><a href="{{route('reservasAdmin')}}" class="enlace">Control de reservas futuras</a></h2>
         </div>
         <div class="col-md-6">
+            <h2><a href="{{route('historial')}}" class="enlace">Historial de reservas</a></h2>
+        </div>
+        <div class="col-md-6">
             <h2><a href="{{route('listaChats')}}" class="enlace">Chats</a></h2>
         </div>
     </div>

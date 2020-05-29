@@ -21,26 +21,6 @@ class ReservasController extends Controller
             ->where('pista_id', '=', $id)
             ->pluck('fecha')->toArray();
 
-        //echo date('H:i/d/m/Y', $tarde);
-
-        /*
-        echo time();
-
-        echo "<br><br><br>";
-
-        echo "Fecha actual: " . date('H:i/d/m/Y', time());
-
-        echo "<br><br><br>";
-
-        echo "Fecha futura: " . date('H:i/d/m/Y', time()+$dia*4);*/
-
-
-        /*
-                foreach ($fechas as $f){
-                    echo date('H:i/d/m/Y', $f) . "<br>";
-                }*/
-
-
         return view('reservas')
             ->with('pista', $pista)
             ->with('fecha', $fecha)
@@ -129,37 +109,12 @@ class ReservasController extends Controller
 
     public function filtroReservas(Request $request)
     {
-        /*
-        $arrayPistas = Pista::all();
 
-        $users = User::where('name', $request->input('nombre'))
-            ->orWhere('name', 'like', '%' . $request->input('nombre') . '%')->get();
+        if (strcmp($request->input('pista'), 'null')) {
 
-        $reservas = Reserva::where('user_id', 0)->get();
-
-        if ($request->input('pista') != null) {
-            foreach ($users as $user) {
-                $aux = Reserva::where('user_id', $user->id)->where('pista_id', $request->input('pista') * 1)->where('fecha', '>', strtotime('9 am'))->get();
-                $reservas = $reservas->merge($aux);
-            }
-        } else {
-            foreach ($users as $user) {
-                $aux = Reserva::where('user_id', $user->id)->where('fecha', '>', strtotime('9 am'))->get();
-                $reservas = $reservas->merge($aux);
-            }
-        }
-
-
-        return view('admin.reservas')
-            ->with('reservas', $reservas)
-            ->with('pistas', $arrayPistas);
-        */
-
-        if ( strcmp($request->input('pista'), 'null')) {
-
-            if ($request->input('nombre') == null){
+            if ($request->input('nombre') == null) {
                 return redirect(url('/admin/reservas/_/' . $request->input('pista')));
-            }else{
+            } else {
                 return redirect(url('/admin/reservas/' . $request->input('nombre') . '/' . $request->input('pista')));
             }
 
@@ -212,5 +167,139 @@ class ReservasController extends Controller
             ->with('pistas', $arrayPistas);
 
     }
+
+    public function historialReservas()
+    {
+
+        $reservas = Reserva::paginate(10);
+
+        $arrayPistas = Pista::all();
+
+        return view('admin.historial')
+            ->with('reservas', $reservas)
+            ->with('pistas', $arrayPistas);
+
+    }
+
+    public function postHistorial(Request $request)
+    {
+
+        if ($request->input('nombre') != null) {
+            $nombre = $request->input('nombre');
+        } else {
+            $nombre = '_';
+        }
+
+        if ($request->input('pista') != null) {
+            $pista = $request->input('pista');
+        } else {
+            $pista = '_';
+        }
+
+        if ($request->input('de') != null) {
+            $de = strtotime($request->input('de'));
+        } else {
+            $de = '_';
+        }
+
+        if ($request->input('hasta') != null) {
+            $hasta = strtotime($request->input('hasta'));
+        } else {
+            $hasta = '_';
+        }
+
+        return redirect(url('/historial/' . $nombre . '/' . $pista . '/' . $de . '/' . $hasta));
+
+    }
+
+    public function filtroHistorialReservas($nombre, $pista, $de, $hasta)
+    {
+
+        $arrayPistas = Pista::all();
+
+        if ($nombre == '_') {
+            $users = User::all();
+        } else {
+            $users = User::where('name', $nombre)
+                ->orWhere('name', 'like', '%' . $nombre . '%')->orderBy('created_at', 'desc')->get();
+        }
+
+        foreach ($users as $user) {
+            $ids[] = $user->id;
+        }
+
+        if ($pista != '_') {
+            $pistas[] = $pista;
+        } else {
+            $pistasBruto = Pista::all();
+            foreach ($pistasBruto as $p) {
+                $pistas[] = $p->id;
+            }
+        }
+
+        if ($de == '_') {
+            $de = 1;
+        }
+
+        if ($hasta == '_') {
+            $hasta = 1906279922;
+        }
+
+        $reservas = Reserva::whereIn('user_id', $ids)->whereIn('pista_id', $pistas)->where('fecha', '>', $de)->where('fecha', '<', ($hasta + 86400))->paginate(10);
+
+        return view('admin.historial')
+            ->with('reservas', $reservas)
+            ->with('pistas', $arrayPistas)
+            ->with('nombre', $nombre)
+            ->with('pistaId', $pista)
+            ->with('de', $de)
+            ->with('hasta', $hasta);
+
+
+    }
+
+    public function generarPdfHistorial($nombre, $pista, $de, $hasta)
+    {
+
+        if ($nombre == '_') {
+            $users = User::all();
+        } else {
+            $users = User::where('name', $nombre)
+                ->orWhere('name', 'like', '%' . $nombre . '%')->orderBy('created_at', 'desc')->get();
+        }
+
+        foreach ($users as $user) {
+            $ids[] = $user->id;
+        }
+
+        if ($pista != '_') {
+            $pistas[] = $pista;
+        } else {
+            $pistasBruto = Pista::all();
+            foreach ($pistasBruto as $p) {
+                $pistas[] = $p->id;
+            }
+        }
+
+        if ($de == '_') {
+            $de = 1;
+        }
+
+        if ($hasta == '_') {
+            $hasta = 1906279922;
+        }
+
+        $reservas = Reserva::whereIn('user_id', $ids)->whereIn('pista_id', $pistas)->where('fecha', '>', $de)->where('fecha', '<', ($hasta + 86400))->get();
+
+        if (count($reservas) == 0) {
+            flash('No hay reservas con esos filtros')->error();
+            return redirect(route('historial'));
+        } else {
+            $pdf = \PDF::loadView('pdf.historial', compact('reservas'));
+            return $pdf->download('historialdereservas.pdf');
+        }
+
+    }
+
 
 }
