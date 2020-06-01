@@ -114,9 +114,46 @@
             </div>
         </div>
     </div>
+
+
+    @if($nChat)
+        <button id="id01" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" hidden>
+            Open
+            Modal
+        </button>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tienes un chat del administtrador sin
+                            contestar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Haz click <a class="enlace" href="{{url('/chatadmin')}}">aquí</a> para responder al chat
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+
+
 @endsection
 
 @section('scripts')
+
+    <script type="text/javascript">
+        function redireccionar() {
+            //alert("1");
+            document.getElementById('id01').style.display = 'active';
+            $("#id01").trigger("click");
+        }
+
+        setTimeout("redireccionar()", 1000); //tiempo expresado en milisegundos
+    </script>
 
     <script>
         $(document).ready(function () {

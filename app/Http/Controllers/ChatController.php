@@ -39,16 +39,32 @@ class ChatController extends Controller
         foreach ($chats as $chat) {
             $ids[] = $chat->user_id;
         }
-        if (isset($ids)){
+        if (isset($ids)) {
             $ids = array_unique($ids);
-        }else{
+        } else {
             $ids = [];
         }
 
         $users = User::whereIn('id', $ids)->get();
+
+        foreach ($users as $u) {
+
+            $chats = Chat::where('user_id', '=', $u->id)->orderBy('created_at', 'desc')->get();
+
+            if (count($chats) != 0 && $chats[0]->admin == 0) {
+                $notificaciones[] = 1;
+            } else {
+                $notificaciones[] = 0;
+            }
+
+        }
+
         $usuarios = User::orderBy('name')->get();
 
-        return view('chat.lista')->with('users', $users)->with('usuarios', $usuarios);
+        return view('chat.lista')
+            ->with('users', $users)
+            ->with('usuarios', $usuarios)
+            ->with('notificaciones', $notificaciones);
 
     }
 
@@ -57,7 +73,9 @@ class ChatController extends Controller
 
         $chats = Chat::where('user_id', '=', $id)->orderBy('created_at', 'desc')->get();
 
-        return view('chat.admin')->with('chats', $chats)->with('id', $id);
+        return view('chat.admin')
+            ->with('chats', $chats)
+            ->with('id', $id);
 
     }
 
@@ -79,7 +97,9 @@ class ChatController extends Controller
 
         $chats = Chat::where('user_id', '=', $request->input('usuario'))->orderBy('created_at', 'desc')->get();
 
-        return view('chat.admin')->with('chats', $chats)->with('id', $request->input('usuario'));
+        return view('chat.admin')
+            ->with('chats', $chats)
+            ->with('id', $request->input('usuario'));
 
     }
 

@@ -38,11 +38,28 @@
         <div class="alert alert-danger">No tienes mensajes de chat con ningun usuario del sistema</div>
     @else
 
-        @foreach($users as $user)
+        <span class="sr-only">{{$i = 0}}</span>
 
-            <a class="enlace" href="{{url('/chat/' . $user->id)}}">{{$user->name}} {{$user->apellidos}}</a><br>
+        <ul class="list-group">
 
-        @endforeach
+            @foreach($users as $user)
+
+                <li class="list-group-item">{{$user->name}} {{$user->apellidos}}
+                    <a class="btn btn-success" href="{{url('/chat/' . $user->id)}}">Ver chat</a>
+                    @if($notificaciones[$i] == 1)
+                        <div class="alert alert-danger">Mensaje sin contestar en este chat</div>
+                    @endif
+                </li>
+
+                {{--
+                <a class="enlace" href="{{url('/chat/' . $user->id)}}">{{$user->name}} {{$user->apellidos}}</a>
+                --}}
+
+                <span class="sr-only">{{$i++}}</span>
+
+            @endforeach
+
+        </ul>
 
     @endif
 
