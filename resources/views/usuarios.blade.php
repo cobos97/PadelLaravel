@@ -79,6 +79,7 @@
         @endforeach
         </tbody>
     </table>
+
     {{$usuarios->links()}}
     <!-- Modal -->
     <div class="modal fade" id="pelexampleModal" tabindex="-1" role="dialog" aria-labelledby="pelexampleModalLabel"
@@ -93,15 +94,18 @@
                 </div>
                 <div class="modal-body">
                     Al penalizar al usuario no tendra acceso a la sección de complejos.
-
-                    <form class="form" id="formPel" action="{{url('/penalizarusuario/' . $usuario->id )}}" method="POST"
-                          style="display:inline"> {{ method_field('PUT') }} @csrf
-                        <label class="sr-only">Tiempo de penalización en días</label>
-                        <input class="form-control mb-2" type="number" name="dias"
-                               placeholder="Introduce un número de días a penalizar">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger" style="display:inline">Penalizar usuario</button>
-                    </form>
+                    @if(isset($usuario))
+                        <form class="form" id="formPel" action="{{url('/penalizarusuario/' . $usuario->id )}}"
+                              method="POST"
+                              style="display:inline"> {{ method_field('PUT') }} @csrf
+                            <label class="sr-only">Tiempo de penalización en días</label>
+                            <input class="form-control mb-2" type="number" name="dias"
+                                   placeholder="Introduce un número de días a penalizar">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger" style="display:inline">Penalizar usuario
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -122,10 +126,12 @@
                 <div class="modal-body">
                     Al borrar el usuario se borrarán todos sus mensajes y reservas también.
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <form id="formDel" action="{{url('/deleteUsuario/' . $usuario->id )}}" method="POST"
-                          style="display:inline"> {{ method_field('DELETE') }} @csrf
-                        <button type="submit" class="btn btn-danger" style="display:inline">Borrar usuario</button>
-                    </form>
+                    @if(isset($usuario))
+                        <form id="formDel" action="{{url('/deleteUsuario/' . $usuario->id )}}" method="POST"
+                              style="display:inline"> {{ method_field('DELETE') }} @csrf
+                            <button type="submit" class="btn btn-danger" style="display:inline">Borrar usuario</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
