@@ -11,7 +11,6 @@
                                                          class="btn btn-success"
                                                          style="color: white">Modificar datos</a></h1>
 
-    <p>{{$complejo->descripcion}}</p>
 
 @endsection
 

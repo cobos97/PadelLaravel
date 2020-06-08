@@ -187,25 +187,49 @@ class DatabaseSeeder extends Seeder
         $mensaje = new Mensaje();
         $mensaje->contenido = 'Buenos días, nos falta uno para esta tarde a las 17:00';
         $mensaje->user_id = 2;
-        $mensaje->complejo_id = 2;
+        $mensaje->complejo_id = 1;
         $mensaje->save();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = 'Me apunto, contad conmigo';
-        $mensaje->user_id = 3;
-        $mensaje->complejo_id = 2;
+        $mensaje->contenido = 'Hola, yo hoy no puedo, lo siento';
+        $mensaje->user_id = 4;
+        $mensaje->complejo_id = 1;
         $mensaje->save();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = '¿Alguien se olvido ayer una sudadera en la pista?';
+        $mensaje->contenido = '¿Quien está disponible para este fin de semana?';
         $mensaje->user_id = 2;
         $mensaje->complejo_id = 1;
         $mensaje->save();
 
         $mensaje = new Mensaje();
-        $mensaje->contenido = 'Si Antonio, es mía. Guardamela por favor, y gracias';
+        $mensaje->contenido = 'Yo podría el sábado Antonio';
         $mensaje->user_id = 3;
         $mensaje->complejo_id = 1;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Me apunto para el sábado';
+        $mensaje->user_id = 4;
+        $mensaje->complejo_id = 1;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Contad conmigo para hoy';
+        $mensaje->user_id = 3;
+        $mensaje->complejo_id = 1;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = '¿Alguien se olvido ayer una sudadera en la pista?';
+        $mensaje->user_id = 2;
+        $mensaje->complejo_id = 2;
+        $mensaje->save();
+
+        $mensaje = new Mensaje();
+        $mensaje->contenido = 'Si Antonio, es mía. Guardamela por favor, y gracias';
+        $mensaje->user_id = 3;
+        $mensaje->complejo_id = 2;
         $mensaje->save();
 
         $mensaje = new Mensaje();
@@ -249,6 +273,16 @@ class DatabaseSeeder extends Seeder
         $contacta = new Contacta();
         $contacta->correo = 'b@b.com';
         $contacta->contenido = 'SOy nuevo con los ordenadores. ¿Cçomo podría registrarme en su página?';
+        $contacta->save();
+
+        $contacta = new Contacta();
+        $contacta->correo = 'c@c.com';
+        $contacta->contenido = 'Buenas, me gustaría saber las novedades que presenta vuestra web.';
+        $contacta->save();
+
+        $contacta = new Contacta();
+        $contacta->correo = 'd@d.com';
+        $contacta->contenido = 'No se como registrarme, podría mandarme un tutorial por favor.';
         $contacta->save();
 
     }
