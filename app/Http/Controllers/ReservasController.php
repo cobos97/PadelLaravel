@@ -129,6 +129,8 @@ class ReservasController extends Controller
     public function filtroGet($nombre, $pista = null)
     {
 
+        date_default_timezone_set('Europe/Madrid');
+
         $arrayPistas = Pista::all();
 
         if ($nombre == '_') {
@@ -171,6 +173,8 @@ class ReservasController extends Controller
     public function historialReservas()
     {
 
+        date_default_timezone_set('Europe/Madrid');
+
         $reservas = Reserva::paginate(10);
 
         $arrayPistas = Pista::all();
@@ -183,6 +187,8 @@ class ReservasController extends Controller
 
     public function postHistorial(Request $request)
     {
+
+        date_default_timezone_set('Europe/Madrid');
 
         if ($request->input('nombre') != null) {
             $nombre = $request->input('nombre');
@@ -214,6 +220,8 @@ class ReservasController extends Controller
 
     public function filtroHistorialReservas($nombre, $pista, $de, $hasta)
     {
+
+        date_default_timezone_set('Europe/Madrid');
 
         $arrayPistas = Pista::all();
 
@@ -260,6 +268,8 @@ class ReservasController extends Controller
 
     public function generarPdfHistorial($nombre, $pista, $de, $hasta)
     {
+
+        date_default_timezone_set('Europe/Madrid');
 
         if ($nombre == '_') {
             $users = User::all();
